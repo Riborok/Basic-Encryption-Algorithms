@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Encryption
+namespace Cryptography
 {
     public partial class Encryptor : Form
     {

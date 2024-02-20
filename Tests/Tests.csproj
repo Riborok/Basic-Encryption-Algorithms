@@ -50,9 +50,9 @@
       <None Include="packages.config" />
     </ItemGroup>
     <ItemGroup>
-      <ProjectReference Include="..\Encryption\Encryption.csproj">
+      <ProjectReference Include="..\Cryptography\Cryptography.csproj">
         <Project>{9be8946b-0ff5-401f-b504-fc2279f69e39}</Project>
-        <Name>Encryption</Name>
+        <Name>Cryptography</Name>
       </ProjectReference>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

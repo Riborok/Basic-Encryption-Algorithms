@@ -1,4 +1,4 @@
-﻿namespace Encryption
+﻿namespace Cryptography
 {
     partial class Encryptor
     {

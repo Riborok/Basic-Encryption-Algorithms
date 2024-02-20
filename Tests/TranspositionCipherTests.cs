@@ -1,4 +1,4 @@
-﻿using Encryption;
+﻿using Cryptography.En_Decryption;
 using NUnit.Framework;
 
 namespace Tests
@@ -19,22 +19,41 @@ namespace Tests
         public void EncryptDecrypt_Plaintext_Shorter_Keyword_ReturnsOriginalText()
         {
             const string plaintext = "CAT";
-            const string keyword = "ENCRYPTION";
+            string[] keywords =
+            {
+                "ELECTROENCEPHALOGRAPHY", 
+                "PSYCHOTHERAPEUTIC", 
+                "MISUNDERSTANDING", 
+                "COUNTERREVOLUTIONARY", 
+                "PHARMACOLOGICALLY",
+            };
 
-            string ciphertext = _cipher.Encrypt(plaintext, keyword);
-            string decryptedText = _cipher.Decrypt(ciphertext, keyword);
-
-            Assert.AreEqual(plaintext, decryptedText);
+            Check(plaintext, keywords);
         }
 
         [Test]
         public void EncryptDecrypt_Plaintext_Longer_Keyword_ReturnsOriginalText()
         {
-            const string plaintext = "ENCRYPTION";
-            const string keyword = "CAT";
+            const string plaintext = "THE ELECTROENCEPHALOGRAPHY RESULTS SHOWED SIGNS OF " +
+                                     "PSYCHOTERAPEUTIC POTENTIAL DESPITE THE INITIAL " +
+                                     "MISUNDERSTANDING LEADING TO A REVOLUTIONARY APPROACH " +
+                                     "IN PHARMACOLOGICALLY ENHANCED TREATMENTS";
+            string[] keywords =
+            {
+                "APPLE",
+                "CARROT",
+                "TABLE",
+                "CHAIR",
+                "RIVER",
+            };
+            
+            Check(plaintext, keywords);
+        }
 
-            string ciphertext = _cipher.Encrypt(plaintext, keyword);
-            string decryptedText = _cipher.Decrypt(ciphertext, keyword);
+        private void Check(string plaintext, params string[] keywords)
+        {
+            string ciphertext = _cipher.Encrypt(plaintext, keywords);
+            string decryptedText = _cipher.Decrypt(ciphertext, keywords);
 
             Assert.AreEqual(plaintext, decryptedText);
         }

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Encryption.Properties
+namespace Cryptography.Properties
 {
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
@@ -45,7 +45,7 @@ namespace Encryption.Properties
                 if ((resourceMan == null))
                 {
                     global::System.Resources.ResourceManager temp =
-                        new global::System.Resources.ResourceManager("Encryption.Properties.Resources",
+                        new global::System.Resources.ResourceManager("Cryptography.Properties.Resources",
                             typeof(Resources).Assembly);
                     resourceMan = temp;
                 }

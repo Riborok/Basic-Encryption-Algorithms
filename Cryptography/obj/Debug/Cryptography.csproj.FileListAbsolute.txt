@@ -1,0 +1,11 @@
+C:\Users\user\Desktop\TI\lab1\Cryptography\Cryptography\bin\Debug\Cryptography.exe.config
+C:\Users\user\Desktop\TI\lab1\Cryptography\Cryptography\bin\Debug\Cryptography.exe
+C:\Users\user\Desktop\TI\lab1\Cryptography\Cryptography\bin\Debug\Cryptography.pdb
+C:\Users\user\Desktop\TI\lab1\Cryptography\Cryptography\obj\Debug\Cryptography.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\TI\lab1\Cryptography\Cryptography\obj\Debug\Cryptography.csproj.SuggestedBindingRedirects.cache
+C:\Users\user\Desktop\TI\lab1\Cryptography\Cryptography\obj\Debug\Cryptography.Encryptor.resources
+C:\Users\user\Desktop\TI\lab1\Cryptography\Cryptography\obj\Debug\Cryptography.Properties.Resources.resources
+C:\Users\user\Desktop\TI\lab1\Cryptography\Cryptography\obj\Debug\Cryptography.csproj.GenerateResource.cache
+C:\Users\user\Desktop\TI\lab1\Cryptography\Cryptography\obj\Debug\Cryptography.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\TI\lab1\Cryptography\Cryptography\obj\Debug\Cryptography.exe
+C:\Users\user\Desktop\TI\lab1\Cryptography\Cryptography\obj\Debug\Cryptography.pdb
