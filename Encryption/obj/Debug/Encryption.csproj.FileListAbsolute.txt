@@ -8,3 +8,4 @@ C:\Users\user\Desktop\TI\lab1\Encryption\Encryption\obj\Debug\Encryption.csproj.
 C:\Users\user\Desktop\TI\lab1\Encryption\Encryption\obj\Debug\Encryption.csproj.CoreCompileInputs.cache
 C:\Users\user\Desktop\TI\lab1\Encryption\Encryption\obj\Debug\Encryption.exe
 C:\Users\user\Desktop\TI\lab1\Encryption\Encryption\obj\Debug\Encryption.pdb
+C:\Users\user\Desktop\TI\lab1\Encryption\Encryption\obj\Debug\Encryption.Encryptor.resources
