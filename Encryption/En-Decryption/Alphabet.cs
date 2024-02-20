@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace Encryption.Alphabet
+namespace Encryption
 {
     public class Alphabet
     {

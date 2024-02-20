@@ -46,7 +46,7 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Alphabet\Alphabet.cs" />
+        <Compile Include="En-Decryption\Alphabet.cs" />
         <Compile Include="Encryptor.cs">
             <SubType>Form</SubType>
         </Compile>
@@ -79,10 +79,6 @@
     </ItemGroup>
     <ItemGroup>
         <None Include="App.config" />
-    </ItemGroup>
-    <ItemGroup>
-      <Folder Include="Decryption\" />
-      <Folder Include="Encryption\" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
