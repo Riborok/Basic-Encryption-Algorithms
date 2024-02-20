@@ -1,17 +1,38 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace Encryption.Alphabet
 {
-    public static class EnglishAlphabet
+    public class Alphabet
     {
-        public static bool Contains(char c)
+        private readonly char _startLetter;
+        private readonly char _endLetter;
+
+        public Alphabet(char startLetter, char endLetter)
         {
-            return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
+            _startLetter = char.ToUpper(startLetter);
+            _endLetter = char.ToUpper(endLetter);
+        }
+
+        public bool Contains(char c)
+        {
+            char toLowerBound = char.ToLower(_startLetter);
+            char toUpperBound = char.ToUpper(_endLetter);
+
+            return (c >= toLowerBound && c <= toUpperBound) || (c >= _startLetter && c <= _endLetter);
         }
         
-        public static string RemoveNonAlphabetic(string s)
+        public string RemoveNonAlphabetic(string s)
         {
             return new string(s.Where(Contains).ToArray());
+        }
+        
+        public int GetLetterIndex(char c)
+        {
+            if (!Contains(c))
+                throw new ArgumentException("Character is not in the alphabet.");
+
+            return char.ToUpper(c) - _startLetter;
         }
     }
 }
