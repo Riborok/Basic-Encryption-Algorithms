@@ -47,6 +47,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="En-Decryption\Alphabet.cs" />
+        <Compile Include="En-Decryption\TranspositionCipher.cs" />
         <Compile Include="Encryptor.cs">
             <SubType>Form</SubType>
         </Compile>

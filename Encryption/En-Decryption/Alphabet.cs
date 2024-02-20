@@ -41,10 +41,15 @@ namespace Encryption
             return new string(s.Where(Contains).ToArray());
         }
         
+        public int CountAlphabeticLetters(string s)
+        {
+            return s.Count(Contains);
+        }
+        
         public int GetIndex(char c)
         {
             if (!Contains(c))
-                throw new ArgumentException("Alphabet: Character is not in the alphabet.");
+                throw new ArgumentException("Alphabet: Letter is not in the alphabet.");
 
             return char.ToUpper(c) - _startLetter;
         }
