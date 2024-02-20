@@ -7,19 +7,33 @@ namespace Encryption
     {
         private readonly char _startLetter;
         private readonly char _endLetter;
+        private readonly char _delimiter;
 
-        public Alphabet(char startLetter, char endLetter)
+        public Alphabet(char startLetter, char endLetter, char delimiter)
         {
             _startLetter = char.ToUpper(startLetter);
             _endLetter = char.ToUpper(endLetter);
+            _delimiter = delimiter;
         }
 
         public bool Contains(char c)
         {
-            char toLowerBound = char.ToLower(_startLetter);
-            char toUpperBound = char.ToUpper(_endLetter);
+            return IsInUpperBound(c) || IsInLowerBound(c) || IsDelimiter(c);
+        }
 
-            return (c >= toLowerBound && c <= toUpperBound) || (c >= _startLetter && c <= _endLetter);
+        private bool IsInLowerBound(char c)
+        {
+            return c >= char.ToLower(_startLetter) && c <= char.ToUpper(_endLetter);
+        }
+
+        private bool IsInUpperBound(char c)
+        {
+            return c >= _startLetter && c <= _endLetter;
+        }
+
+        private bool IsDelimiter(char c)
+        {
+            return c == _delimiter;
         }
         
         public string RemoveNonAlphabetic(string s)
@@ -27,12 +41,30 @@ namespace Encryption
             return new string(s.Where(Contains).ToArray());
         }
         
-        public int GetLetterIndex(char c)
+        public int GetIndex(char c)
         {
             if (!Contains(c))
-                throw new ArgumentException("Character is not in the alphabet.");
+                throw new ArgumentException("Alphabet: Character is not in the alphabet.");
 
             return char.ToUpper(c) - _startLetter;
+        }
+        
+        public char GetLetter(int index)
+        {
+            if (IsIndexOutOfRange(index))
+                throw new ArgumentOutOfRangeException(nameof(index), @"Alphabet: Index is out of range.");
+
+            return (char)(_startLetter + index);
+        }
+        
+        private bool IsIndexOutOfRange(int index)
+        {
+            return index < 0 || index > _endLetter - _startLetter;
+        }
+        
+        public int GetSize()
+        {
+            return _endLetter - _startLetter + 1;
         }
     }
 }
