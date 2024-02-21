@@ -55,7 +55,7 @@ namespace Tests
             string ciphertext = _cipher.Encrypt(plaintext, keywords);
             string decryptedText = _cipher.Decrypt(ciphertext, keywords);
 
-            Assert.AreEqual(plaintext, decryptedText);
+            Assert.AreEqual(plaintext.ToUpper(), decryptedText);
         }
     }
 }

@@ -17,6 +17,13 @@ namespace Cryptography.En_Decryption
         }
         
         /// <exception cref="ArgumentException">Thrown when either c1 or c2 is not in the alphabet.</exception>
+        public char SubtractLetters(char c1, char c2)
+        {
+            int differenceIndex = (GetIndex(c1) - GetIndex(c2) + GetSize()) % GetSize();
+            return GetLetter(differenceIndex);
+        }
+        
+        /// <exception cref="ArgumentException">Thrown when either c1 or c2 is not in the alphabet.</exception>
         public char AddLetters(char c1, char c2)
         {
             int sumIndex = (GetIndex(c1) + GetIndex(c2)) % GetSize();
@@ -63,8 +70,7 @@ namespace Cryptography.En_Decryption
         {
             if (IsIndexOutOfRange(index))
                 throw new ArgumentOutOfRangeException(nameof(index), $@"Alphabet: Index '{index}' is out of range.");
-
-
+            
             return (char)(_startUpperLetter + index);
         }
         
