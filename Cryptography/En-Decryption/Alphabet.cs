@@ -31,6 +31,11 @@ namespace Cryptography.En_Decryption
             return c == _delimiter;
         }
         
+        /// <exception cref="ArgumentException">Thrown when the letter is not in the alphabet.</exception>
+        public char MultiplyLetter(char letter, int number) {
+            return GetLetter(GetIndex(letter) * number % Size);
+        }
+        
         /// <exception cref="ArgumentException">Thrown when either c1 or c2 is not in the alphabet.</exception>
         public char SubtractLetters(char minuendLetter, char subtrahendLetter)
         {
@@ -44,18 +49,11 @@ namespace Cryptography.En_Decryption
         }
 
         /// <exception cref="ArgumentException">Thrown when the letter is not in the alphabet.</exception>
-        public char MultiplyLetter(char letter, int number) {
-            if (!Contains(letter))
-                throw new ArgumentException($"Alphabet: Letter '{letter}' is not in the alphabet."); 
-            
-            return GetLetter(GetIndex(letter) * number % GetSize());
-        }
-        
-        /// <exception cref="ArgumentException">Thrown when the letter is not in the alphabet.</exception>
         public char ShiftLetter(char letter, int shift)
         {
-            int shiftedIndex = (GetIndex(letter) + shift + GetSize()) % GetSize();
-            return GetLetter(shiftedIndex);
+            int shiftedIndex = (GetIndex(letter) + shift) % Size;
+            int positiveIndex = shiftedIndex >= 0 ? shiftedIndex : shiftedIndex + Size;
+            return GetLetter(positiveIndex);
         }
 
         /// <exception cref="ArgumentException">Thrown when the character is not in the alphabet.</exception>
@@ -64,7 +62,7 @@ namespace Cryptography.En_Decryption
             if (!Contains(c))
                 throw new ArgumentException($"Alphabet: Letter '{c}' is not in the alphabet.");
 
-            return char.ToUpper(c) - _startUpperLetter;
+            return c == _delimiter ? LastIndex : char.ToUpper(c) - _startUpperLetter;
         }
         
         /// <exception cref="ArgumentOutOfRangeException">Thrown when the index is out of range.</exception>
@@ -73,17 +71,16 @@ namespace Cryptography.En_Decryption
             if (IsIndexOutOfRange(index))
                 throw new ArgumentOutOfRangeException(nameof(index), $@"Alphabet: Index '{index}' is out of range.");
             
-            return (char)(_startUpperLetter + index);
+            return index == LastIndex ? _delimiter : (char)(_startUpperLetter + index);
         }
         
         private bool IsIndexOutOfRange(int index)
         {
-            return index < 0 || index > _endUpperLetter - _startUpperLetter;
+            return index < 0 || index > LastIndex;
         }
         
-        public int GetSize()
-        {
-            return _endUpperLetter - _startUpperLetter + 1;
-        }
+        // There is also delimiter in the alphabet
+        public int LastIndex => _endUpperLetter - _startUpperLetter + 1;
+        public int Size => _endUpperLetter - _startUpperLetter + 2;
     }
 }

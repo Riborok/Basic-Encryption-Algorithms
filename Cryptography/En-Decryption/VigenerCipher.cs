@@ -15,7 +15,7 @@ namespace Cryptography.En_Decryption
         
         protected override string Encrypt(string plaintext, string keyword)
         {
-            string vigenerKeyword = _vigenerKeyGenerator.GenerateKey(KeyAlphabet, plaintext, keyword);
+            string vigenerKeyword = _vigenerKeyGenerator.GenerateKey(KeyAlphabet, plaintext, keyword, true);
             Debug.Assert(plaintext.Length == vigenerKeyword.Length);
             return GenerateCiphertext(plaintext, vigenerKeyword);
         }
@@ -36,7 +36,7 @@ namespace Cryptography.En_Decryption
         
         protected override string Decrypt(string ciphertext, string keyword)
         {
-            string vigenerKeyword = _vigenerKeyGenerator.GenerateKey(KeyAlphabet, ciphertext, keyword);
+            string vigenerKeyword = _vigenerKeyGenerator.GenerateKey(KeyAlphabet, ciphertext, keyword, false);
             Debug.Assert(ciphertext.Length == vigenerKeyword.Length);
             return GeneratePlaintext(ciphertext, vigenerKeyword);
         }
