@@ -23,7 +23,7 @@ namespace Cryptography.En_Decryption
 
         private bool IsInLowerBound(char c)
         {
-            return c >= char.ToLower(_startLetter) && c <= char.ToUpper(_endLetter);
+            return c >= char.ToLower(_startLetter) && c <= char.ToLower(_endLetter);
         }
 
         private bool IsInUpperBound(char c)
