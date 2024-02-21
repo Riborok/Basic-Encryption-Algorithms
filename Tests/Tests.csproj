@@ -45,6 +45,7 @@
         </Reference>
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="DecimationCypherTests.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="TranspositionCipherTests.cs" />
     </ItemGroup>

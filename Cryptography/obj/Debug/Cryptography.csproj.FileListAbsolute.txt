@@ -9,3 +9,13 @@ C:\Users\user\Desktop\TI\lab1\Cryptography\Cryptography\obj\Debug\Cryptography.c
 C:\Users\user\Desktop\TI\lab1\Cryptography\Cryptography\obj\Debug\Cryptography.csproj.CoreCompileInputs.cache
 C:\Users\user\Desktop\TI\lab1\Cryptography\Cryptography\obj\Debug\Cryptography.exe
 C:\Users\user\Desktop\TI\lab1\Cryptography\Cryptography\obj\Debug\Cryptography.pdb
+D:\Уник\ТИ\Задание №1_простейшие_шифры\Basic-Encryption-Algorithms\Cryptography\bin\Debug\Cryptography.exe.config
+D:\Уник\ТИ\Задание №1_простейшие_шифры\Basic-Encryption-Algorithms\Cryptography\bin\Debug\Cryptography.exe
+D:\Уник\ТИ\Задание №1_простейшие_шифры\Basic-Encryption-Algorithms\Cryptography\bin\Debug\Cryptography.pdb
+D:\Уник\ТИ\Задание №1_простейшие_шифры\Basic-Encryption-Algorithms\Cryptography\obj\Debug\Cryptography.csproj.AssemblyReference.cache
+D:\Уник\ТИ\Задание №1_простейшие_шифры\Basic-Encryption-Algorithms\Cryptography\obj\Debug\Cryptography.Encryptor.resources
+D:\Уник\ТИ\Задание №1_простейшие_шифры\Basic-Encryption-Algorithms\Cryptography\obj\Debug\Cryptography.Properties.Resources.resources
+D:\Уник\ТИ\Задание №1_простейшие_шифры\Basic-Encryption-Algorithms\Cryptography\obj\Debug\Cryptography.csproj.GenerateResource.cache
+D:\Уник\ТИ\Задание №1_простейшие_шифры\Basic-Encryption-Algorithms\Cryptography\obj\Debug\Cryptography.csproj.CoreCompileInputs.cache
+D:\Уник\ТИ\Задание №1_простейшие_шифры\Basic-Encryption-Algorithms\Cryptography\obj\Debug\Cryptography.exe
+D:\Уник\ТИ\Задание №1_простейшие_шифры\Basic-Encryption-Algorithms\Cryptography\obj\Debug\Cryptography.pdb

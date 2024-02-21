@@ -42,6 +42,14 @@ namespace Cryptography.En_Decryption
         {
             return ShiftLetter(baseLetter, GetIndex(addedLetter));
         }
+
+        /// <exception cref="ArgumentException">Thrown when the letter is not in the alphabet.</exception>
+        public char MultiplyLetter(char letter, int number) {
+            if (!Contains(letter))
+                throw new ArgumentException($"Alphabet: Letter '{letter}' is not in the alphabet."); 
+            
+            return GetLetter(GetIndex(letter) * number % GetSize());
+        }
         
         /// <exception cref="ArgumentException">Thrown when the letter is not in the alphabet.</exception>
         public char ShiftLetter(char letter, int shift)
@@ -73,7 +81,7 @@ namespace Cryptography.En_Decryption
             return index < 0 || index > _endUpperLetter - _startUpperLetter;
         }
         
-        private int GetSize()
+        public int GetSize()
         {
             return _endUpperLetter - _startUpperLetter + 1;
         }
