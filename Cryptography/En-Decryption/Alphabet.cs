@@ -6,19 +6,17 @@ namespace Cryptography.En_Decryption
     {
         private readonly char _startUpperLetter;
         private readonly char _endUpperLetter;
-        private readonly char _delimiter;
 
-        public Alphabet(char startLetter, char endLetter, char delimiter)
+        public Alphabet(char startLetter, char endLetter)
         {
             _startUpperLetter = char.ToUpper(startLetter);
             _endUpperLetter = char.ToUpper(endLetter);
-            _delimiter = delimiter;
         }
 
         public bool Contains(char c)
         {
             c = char.ToUpper(c);
-            return IsLetter(c) || IsDelimiter(c);
+            return IsLetter(c);
         }
 
         private bool IsLetter(char c)
@@ -26,11 +24,6 @@ namespace Cryptography.En_Decryption
             return c >= _startUpperLetter && c <= _endUpperLetter;
         }
 
-        private bool IsDelimiter(char c)
-        {
-            return c == _delimiter;
-        }
-        
         /// <exception cref="ArgumentException">Thrown when the letter is not in the alphabet.</exception>
         public char MultiplyLetter(char letter, int number) {
             return GetLetter(GetIndex(letter) * number % Size);
@@ -60,27 +53,26 @@ namespace Cryptography.En_Decryption
         private int GetIndex(char c)
         {
             if (!Contains(c))
-                throw new ArgumentException($"Alphabet: Letter '{c}' is not in the alphabet.");
+                throw new ArgumentException($"Alphabet {_startUpperLetter}..{_endUpperLetter}:: Letter '{c}' is not in the alphabet.");
 
-            return c == _delimiter ? LastIndex : char.ToUpper(c) - _startUpperLetter;
+            return char.ToUpper(c) - _startUpperLetter;
         }
         
         /// <exception cref="ArgumentOutOfRangeException">Thrown when the index is out of range.</exception>
         private char GetLetter(int index)
         {
             if (IsIndexOutOfRange(index))
-                throw new ArgumentOutOfRangeException(nameof(index), $@"Alphabet: Index '{index}' is out of range.");
+                throw new ArgumentOutOfRangeException(nameof(index), $@"Alphabet {_startUpperLetter}..{_endUpperLetter}:: Index '{index}' is out of range.");
             
-            return index == LastIndex ? _delimiter : (char)(_startUpperLetter + index);
+            return (char)(_startUpperLetter + index);
         }
         
         private bool IsIndexOutOfRange(int index)
         {
-            return index < 0 || index > LastIndex;
+            return index < 0 || index >= Size;
         }
         
         // There is also delimiter in the alphabet
-        public int LastIndex => _endUpperLetter - _startUpperLetter + 1;
-        public int Size => _endUpperLetter - _startUpperLetter + 2;
+        public int Size => _endUpperLetter - _startUpperLetter + 1;
     }
 }

@@ -10,25 +10,25 @@ namespace Cryptography.En_Decryption {
         
         public int GenerateInverseKey(int key) {
             int t = 0;
-            int newt = 1;
+            int newT = 1;
             int r = _symbolsAmount;
-            int newr = key;
+            int newR = key;
 
-            while (newr != 0)
+            while (newR != 0)
             {
-                int quotient = r / newr;
+                int quotient = r / newR;
                 
                 int temp = t;
-                t = newt;
-                newt = temp - quotient * newt;
+                t = newT;
+                newT = temp - quotient * newT;
                 
                 temp = r;
-                r = newr;
-                newr = temp - quotient * newr;
+                r = newR;
+                newR = temp - quotient * newR;
             }
 
             if (r > 1)
-                throw new Exception("Не обратимо");
+                throw new ArithmeticException($"InverseKeysGenerator: Given key {key} isn't reversible!");
 
             if (t < 0)
                 t += _symbolsAmount;

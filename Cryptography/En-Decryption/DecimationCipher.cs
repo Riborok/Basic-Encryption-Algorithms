@@ -7,11 +7,11 @@ namespace Cryptography.En_Decryption {
 
         public DecimationCipher(Alphabet textAlphabet, Alphabet keyAlphabet) 
             : base(textAlphabet, keyAlphabet) {
-            _textAlphabetSize = TextAlphabet.GetSize();
+            _textAlphabetSize = TextAlphabet.Size;
             InverseKeysGenerator = new InverseKeysGenerator(_textAlphabetSize);
         }
 
-        private bool AreRelPrime(int a, int b) {
+        private static bool AreRelPrime(int a, int b) {
             while (b != 0)
             {
                 int temp = b;
@@ -24,22 +24,22 @@ namespace Cryptography.En_Decryption {
 
         private bool IsKeyCorrect(string stringKey, out int key, out string message) {
             if (!int.TryParse(stringKey, out key)) {
-                message = "Ключ не является числом!";
+                message = "DecimationCipher: Key is not a number!";
                 return false;
             }
             
             if (!AreRelPrime(key, _textAlphabetSize)) {
-                message = $"Ключ не взаимно простой с количеством символов в алфавите (${_textAlphabetSize})!";
+                message = $"DecimationCipher: The key {key} is not mutually simple with the number of characters in the alphabet {_textAlphabetSize}!";
                 return false;
             }
             
             if (key > _textAlphabetSize) {
-                message = $"Ключ больше, чем количество символов в алфавите (${_textAlphabetSize})!";
+                message = $"DecimationCipher: The key {key} is larger than the number of characters in the alphabet {_textAlphabetSize}!";
                 return false;
             }
             
             if (key <= 0) {
-                message = $"Ключ не может быть меньше либо равен нулю)!";
+                message = $"DecimationCipher: Key {key} cannot be less than or equal to zero!";
                 return false;
             }
 
