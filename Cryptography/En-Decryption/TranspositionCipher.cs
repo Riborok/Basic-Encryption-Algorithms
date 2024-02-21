@@ -5,25 +5,14 @@ using System.Text;
 
 namespace Cryptography.En_Decryption
 {
-    public class TranspositionCipher
+    public class TranspositionCipher : Cipher
     {
-        private readonly Alphabet _alphabet;
-
-        public TranspositionCipher(Alphabet alphabet)
+        public TranspositionCipher(Alphabet textAlphabet, Alphabet keyAlphabet) 
+            : base(textAlphabet, keyAlphabet)
         {
-            _alphabet = alphabet;
         }
 
-        public string Encrypt(string plaintext, params string[] keywords)
-        {
-            plaintext = _alphabet.RemoveNonAlphabetic(plaintext);
-            foreach (var keyword in keywords)
-                plaintext = Encrypt(plaintext, _alphabet.RemoveNonAlphabetic(keyword));
-            
-            return plaintext;
-        }
-        
-        private static string Encrypt(string plaintext, string keyword)
+        protected override string Encrypt(string plaintext, string keyword)
         {
             var table = new TranspositionTable(plaintext.Length, keyword.Length);
             var columnOrder = ColumnOrder.Create(keyword);
@@ -33,16 +22,7 @@ namespace Cryptography.En_Decryption
             return table.GenerateCiphertext(columnOrder);
         }
 
-        public string Decrypt(string ciphertext, params string[] keywords)
-        {
-            ciphertext = _alphabet.RemoveNonAlphabetic(ciphertext);
-            foreach (var keyword in keywords.Reverse())
-                ciphertext = Decrypt(ciphertext, _alphabet.RemoveNonAlphabetic(keyword));
-            
-            return ciphertext;
-        }
-        
-        private static string Decrypt(string ciphertext, string keyword)
+        protected override string Decrypt(string ciphertext, string keyword)
         {
             var table = new TranspositionTable(ciphertext.Length, keyword.Length);
             var columnOrder = ColumnOrder.Create(keyword);
@@ -86,11 +66,13 @@ namespace Cryptography.En_Decryption
     internal class TranspositionTable
     {
         private const char FillCharacter = '\0';
-        
+
+        private readonly int _textLength;
         private readonly char[,] _table;
 
         public TranspositionTable(int textLength, int columns)
         {
+            _textLength = textLength;
             _table = new char[CalcRows(textLength, columns), columns];
         }
         
@@ -101,7 +83,7 @@ namespace Cryptography.En_Decryption
 
         public string GeneratePlaintext()
         {
-            var plaintextBuilder = new StringBuilder();
+            var plaintextBuilder = new StringBuilder(_textLength);
 
             for (int rowIndex = 0; rowIndex < Rows; rowIndex++)
                 BuildPlaintextRow(plaintextBuilder, rowIndex);
@@ -121,7 +103,7 @@ namespace Cryptography.En_Decryption
         
         public string GenerateCiphertext(IEnumerable<int> columnOrder)
         {
-            var ciphertextBuilder = new StringBuilder();
+            var ciphertextBuilder = new StringBuilder(_textLength);
 
             foreach (int columnIndex in columnOrder)
                 BuildCiphertextColumn(ciphertextBuilder, columnIndex);
@@ -150,21 +132,19 @@ namespace Cryptography.En_Decryption
 
         public void FillTableWithCiphertext(string ciphertext, IEnumerable<int> columnOrder)
         {
-            int lastRow = Rows - 1;
-            int letterCountInLastRow = Columns - (Rows * Columns - ciphertext.Length);
-            
             int index = 0;
             
             foreach (int columnIndex in columnOrder)
             {
-                for (int i = 0; i < lastRow; i++)
+                for (int i = 0; i < LastRows; i++)
                     _table[i, columnIndex] = ciphertext[index++];
-                _table[lastRow, columnIndex] = columnIndex < letterCountInLastRow ? ciphertext[index++] : FillCharacter;
+                _table[LastRows, columnIndex] = columnIndex < LetterCountInLastRow ? ciphertext[index++] : FillCharacter;
             }
         }
-
-        private int Rows => _table.GetLength(0);
         
+        private int LetterCountInLastRow => Columns - (Rows * Columns - _textLength);
+        private int Rows => _table.GetLength(0);
+        private int LastRows => Rows - 1;
         private int Columns => _table.GetLength(1);
     }
 }

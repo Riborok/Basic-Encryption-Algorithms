@@ -12,6 +12,9 @@
         <FileAlignment>512</FileAlignment>
         <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
         <Deterministic>true</Deterministic>
+        <LangVersion>8</LangVersion>
+        <Nullable>enable</Nullable>
+        <WarningsAsErrors>nullable</WarningsAsErrors>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <PlatformTarget>AnyCPU</PlatformTarget>
@@ -47,7 +50,10 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="En-Decryption\Alphabet.cs" />
+        <Compile Include="En-Decryption\Cipher.cs" />
         <Compile Include="En-Decryption\TranspositionCipher.cs" />
+        <Compile Include="En-Decryption\VigenerCipher.cs" />
+        <Compile Include="En-Decryption\VigenerKeyGenerator.cs" />
         <Compile Include="Encryptor.cs">
             <SubType>Form</SubType>
         </Compile>

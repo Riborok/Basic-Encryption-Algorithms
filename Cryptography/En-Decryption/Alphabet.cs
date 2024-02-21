@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 namespace Cryptography.En_Decryption
 {
@@ -14,20 +13,6 @@ namespace Cryptography.En_Decryption
             _startUpperLetter = char.ToUpper(startLetter);
             _endUpperLetter = char.ToUpper(endLetter);
             _delimiter = delimiter;
-        }
-        
-        /// <exception cref="ArgumentException">Thrown when either c1 or c2 is not in the alphabet.</exception>
-        public char SubtractLetters(char c1, char c2)
-        {
-            int differenceIndex = (GetIndex(c1) - GetIndex(c2) + GetSize()) % GetSize();
-            return GetLetter(differenceIndex);
-        }
-        
-        /// <exception cref="ArgumentException">Thrown when either c1 or c2 is not in the alphabet.</exception>
-        public char AddLetters(char c1, char c2)
-        {
-            int sumIndex = (GetIndex(c1) + GetIndex(c2)) % GetSize();
-            return GetLetter(sumIndex);
         }
 
         public bool Contains(char c)
@@ -46,18 +31,27 @@ namespace Cryptography.En_Decryption
             return c == _delimiter;
         }
         
-        public string RemoveNonAlphabetic(string s)
+        /// <exception cref="ArgumentException">Thrown when either c1 or c2 is not in the alphabet.</exception>
+        public char SubtractLetters(char minuendLetter, char subtrahendLetter)
         {
-            return new string(s.Where(Contains).ToArray());
+            return ShiftLetter(minuendLetter, -GetIndex(subtrahendLetter));
         }
         
-        public int CountAlphabeticLetters(string s)
+        /// <exception cref="ArgumentException">Thrown when either c1 or c2 is not in the alphabet.</exception>
+        public char AddLetters(char baseLetter, char addedLetter)
         {
-            return s.Count(Contains);
+            return ShiftLetter(baseLetter, GetIndex(addedLetter));
         }
         
+        /// <exception cref="ArgumentException">Thrown when the letter is not in the alphabet.</exception>
+        public char ShiftLetter(char letter, int shift)
+        {
+            int shiftedIndex = (GetIndex(letter) + shift + GetSize()) % GetSize();
+            return GetLetter(shiftedIndex);
+        }
+
         /// <exception cref="ArgumentException">Thrown when the character is not in the alphabet.</exception>
-        public int GetIndex(char c)
+        private int GetIndex(char c)
         {
             if (!Contains(c))
                 throw new ArgumentException($"Alphabet: Letter '{c}' is not in the alphabet.");
@@ -66,7 +60,7 @@ namespace Cryptography.En_Decryption
         }
         
         /// <exception cref="ArgumentOutOfRangeException">Thrown when the index is out of range.</exception>
-        public char GetLetter(int index)
+        private char GetLetter(int index)
         {
             if (IsIndexOutOfRange(index))
                 throw new ArgumentOutOfRangeException(nameof(index), $@"Alphabet: Index '{index}' is out of range.");
@@ -79,7 +73,7 @@ namespace Cryptography.En_Decryption
             return index < 0 || index > _endUpperLetter - _startUpperLetter;
         }
         
-        public int GetSize()
+        private int GetSize()
         {
             return _endUpperLetter - _startUpperLetter + 1;
         }

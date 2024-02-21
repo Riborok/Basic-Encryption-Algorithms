@@ -12,7 +12,7 @@ namespace Tests
         public void Setup()
         {
             var alphabet = new Alphabet('A', 'Z', ' ');
-            _cipher = new TranspositionCipher(alphabet);
+            _cipher = new TranspositionCipher(alphabet, alphabet);
         }
 
         [Test]
