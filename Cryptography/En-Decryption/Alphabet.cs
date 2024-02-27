@@ -50,19 +50,19 @@ namespace Cryptography.En_Decryption
         }
 
         /// <exception cref="ArgumentException">Thrown when the character is not in the alphabet.</exception>
-        private int GetIndex(char c)
+        public int GetIndex(char c)
         {
             if (!Contains(c))
-                throw new ArgumentException($"Alphabet {_startUpperLetter}..{_endUpperLetter}:: Letter '{c}' is not in the alphabet.");
+                throw new ArgumentException($"{nameof(Alphabet)} {this}: Letter '{c}' is not in the alphabet.");
 
             return char.ToUpper(c) - _startUpperLetter;
         }
         
         /// <exception cref="ArgumentOutOfRangeException">Thrown when the index is out of range.</exception>
-        private char GetLetter(int index)
+        public char GetLetter(int index)
         {
             if (IsIndexOutOfRange(index))
-                throw new ArgumentOutOfRangeException(nameof(index), $@"Alphabet {_startUpperLetter}..{_endUpperLetter}:: Index '{index}' is out of range.");
+                throw new ArgumentOutOfRangeException($"{nameof(Alphabet)} {this}: Index '{index}' is out of range.");
             
             return (char)(_startUpperLetter + index);
         }
@@ -71,8 +71,12 @@ namespace Cryptography.En_Decryption
         {
             return index < 0 || index >= Size;
         }
-        
-        // There is also delimiter in the alphabet
+
+        public override string ToString()
+        {
+            return $"{_startUpperLetter}..{_endUpperLetter}";
+        }
+
         public int Size => _endUpperLetter - _startUpperLetter + 1;
     }
 }

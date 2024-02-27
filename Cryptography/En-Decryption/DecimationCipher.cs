@@ -2,13 +2,11 @@
 
 namespace Cryptography.En_Decryption {
     public class DecimationCipher : Cipher {
-        private readonly int _textAlphabetSize;
         public InverseKeysGenerator InverseKeysGenerator { get; }
 
         public DecimationCipher(Alphabet textAlphabet, Alphabet keyAlphabet) 
             : base(textAlphabet, keyAlphabet) {
-            _textAlphabetSize = TextAlphabet.Size;
-            InverseKeysGenerator = new InverseKeysGenerator(_textAlphabetSize);
+            InverseKeysGenerator = new InverseKeysGenerator(TextAlphabet.Size);
         }
 
         private static bool AreRelPrime(int a, int b) {
@@ -24,22 +22,22 @@ namespace Cryptography.En_Decryption {
 
         private bool IsKeyCorrect(string stringKey, out int key, out string message) {
             if (!int.TryParse(stringKey, out key)) {
-                message = "DecimationCipher: Key is not a number!";
+                message = $"{nameof(DecimationCipher)}: The key '{key}' is not a number!";
                 return false;
             }
             
-            if (!AreRelPrime(key, _textAlphabetSize)) {
-                message = $"DecimationCipher: The key {key} is not mutually simple with the number of characters in the alphabet {_textAlphabetSize}!";
+            if (!AreRelPrime(key, TextAlphabet.Size)) {
+                message = $"{nameof(DecimationCipher)}: The key '{key}' is not mutually simple with the amount of characters in the alphabet, which is {TextAlphabet.Size}!";
                 return false;
             }
             
-            if (key > _textAlphabetSize) {
-                message = $"DecimationCipher: The key {key} is larger than the number of characters in the alphabet {_textAlphabetSize}!";
+            if (key > TextAlphabet.Size) {
+                message = $"{nameof(DecimationCipher)}: The key '{key}' is larger than the amount of characters in the alphabet, which is {TextAlphabet.Size}!";
                 return false;
             }
             
             if (key <= 0) {
-                message = $"DecimationCipher: Key {key} cannot be less than or equal to zero!";
+                message = $"{nameof(DecimationCipher)}: The key '{key}' cannot be less than or equal to zero!";
                 return false;
             }
 
