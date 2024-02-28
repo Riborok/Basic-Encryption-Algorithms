@@ -48,6 +48,12 @@
         <Compile Include="DecimationCypherTests.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="TranspositionCipherTests.cs" />
+        <Compile Include="Utilities\Alphabets.cs" />
+        <Compile Include="Utilities\Checker.cs" />
+        <Compile Include="Utilities\DigitWordGenerator.cs" />
+        <Compile Include="Utilities\EnWordGenerator.cs" />
+        <Compile Include="Utilities\ReservedEnWords.cs" />
+        <Compile Include="VigenerCipherTests.cs" />
     </ItemGroup>
     <ItemGroup>
       <None Include="packages.config" />
@@ -57,6 +63,9 @@
         <Project>{9be8946b-0ff5-401f-b504-fc2279f69e39}</Project>
         <Name>Cryptography</Name>
       </ProjectReference>
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="Utilities\ReservedEnWords.txt" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

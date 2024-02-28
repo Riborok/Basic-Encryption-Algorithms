@@ -1,18 +1,14 @@
-﻿using Cryptography.En_Decryption;
+﻿using System.Collections.Generic;
+using Cryptography.En_Decryption;
 using NUnit.Framework;
+using Tests.Utilities;
 
 namespace Tests {
     
     [TestFixture]
     public class DecimationCipherTests {
-        private DecimationCipher _cipher;
-
-        [SetUp]
-        public void Setup() {
-            var textAlphabet = new Alphabet('A', 'Z');
-            var keysAlphabet = new Alphabet('0', '9');
-            _cipher = new DecimationCipher(textAlphabet, keysAlphabet);
-        }
+        private readonly DecimationCipher _cipher = 
+            new DecimationCipher(Alphabets.EnAlphabet, Alphabets.DigitAlphabet);
 
         [Test]
         public void Check_InverseKey() {
@@ -27,21 +23,31 @@ namespace Tests {
         [Test]
         public void EncryptDecrypt_Plaintext_ReturnsOriginalText()
         {
-            const string plaintext = "TODAY";
-            string[] keywords = {
-                "5"
-            };
-            const string cipherText = "RSPAQ";
-        
-            Check(plaintext, cipherText, keywords);
+            const string originalText = "TODAY";
+            var keywords = new[] { "5" };
+            const string expectedCipherText = "RSPAQ";
+
+            CheckEncryption(originalText, expectedCipherText, keywords);
         }
 
-        private void Check(string plainedText, string cypheredText, params string[] keywords)
+        private void CheckEncryption(string originalText, string expectedCipherText, IReadOnlyCollection<string> keywords)
         {
-            string cipherText = _cipher.Encrypt(plainedText, keywords);
-            string plainText = _cipher.Decrypt(cypheredText, keywords);
+            string actualCipherText = _cipher.Encrypt(originalText, keywords);
+            string decryptedText = _cipher.Decrypt(expectedCipherText, keywords);
 
-            Assert.AreEqual(plainedText, plainText);
+            Assert.AreEqual(originalText, decryptedText);
+            Assert.AreEqual(expectedCipherText, actualCipherText);
         }
+        
+        /*[Test]
+        public void EncryptDecrypt_RandomPlaintextAndKeywords_ReturnsOriginalText()
+        {
+            const int keyCount = 10;
+            
+            var plaintext = EnWordGenerator.GenerateWord();
+            var keywords = DigitWordGenerator.GenerateWords(keyCount, Alphabets.EnAlphabet.Size);
+
+            Checker.Check(_cipher, plaintext, keywords);
+        }*/
     }
 }

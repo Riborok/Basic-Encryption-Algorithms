@@ -1,16 +1,13 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2635716a_002De86e_002D4f7c_002D81c6_002Dd66e17464129/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Check_InverseKey" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2635716a_002De86e_002D4f7c_002D81c6_002Dd66e17464129/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Check_InverseKey" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;NUnit3x::4E90B910-3EAB-48E5-A273-037FF6552460::.NETFramework,Version=v4.8::Tests.DecimationCipherTests.Check_InverseKey&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::4E90B910-3EAB-48E5-A273-037FF6552460::.NETFramework,Version=v4.8::Tests.TranspositionCipherTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=Encryption_002FEncryptor/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/Initialized/@EntryValue">True</s:Boolean>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=cfdac133_002Df56f_002D49fe_002Da970_002D7e0821dd60ea/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TranspositionCipherTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::4E90B910-3EAB-48E5-A273-037FF6552460::.NETFramework,Version=v4.8::Tests.TranspositionCipherTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::4E90B910-3EAB-48E5-A273-037FF6552460::.NETFramework,Version=v4.8::Tests.DecimationCipherTests.Check_InverseKey&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::4E90B910-3EAB-48E5-A273-037FF6552460::.NETFramework,Version=v4.8::Tests.DecimationCipherTests.EncryptDecrypt_Plaintext_ReturnsOriginalText&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=cfdac133_002Df56f_002D49fe_002Da970_002D7e0821dd60ea/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TranspositionCipherTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Project Location="C:\Users\user\Desktop\TI\lab1\Cryptography\Tests" Presentation="&amp;lt;Tests&amp;gt;" /&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=STIS/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>

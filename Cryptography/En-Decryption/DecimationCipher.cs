@@ -22,22 +22,22 @@ namespace Cryptography.En_Decryption {
 
         private bool IsKeyCorrect(string stringKey, out int key, out string message) {
             if (!int.TryParse(stringKey, out key)) {
-                message = $"{nameof(DecimationCipher)}: The key '{key}' is not a number!";
+                message = $"{nameof(DecimationCipher)}: The key '{stringKey}' is not a number!";
                 return false;
             }
             
             if (!AreRelPrime(key, TextAlphabet.Size)) {
-                message = $"{nameof(DecimationCipher)}: The key '{key}' is not mutually simple with the amount of characters in the alphabet, which is {TextAlphabet.Size}!";
+                message = $"{nameof(DecimationCipher)}: The key '{stringKey}' is not mutually simple with the amount of characters in the alphabet, which is {TextAlphabet.Size}!";
                 return false;
             }
             
             if (key > TextAlphabet.Size) {
-                message = $"{nameof(DecimationCipher)}: The key '{key}' is larger than the amount of characters in the alphabet, which is {TextAlphabet.Size}!";
+                message = $"{nameof(DecimationCipher)}: The key '{stringKey}' is larger than the amount of characters in the alphabet, which is {TextAlphabet.Size}!";
                 return false;
             }
             
             if (key <= 0) {
-                message = $"{nameof(DecimationCipher)}: The key '{key}' cannot be less than or equal to zero!";
+                message = $"{nameof(DecimationCipher)}: The key '{stringKey}' cannot be less than or equal to zero!";
                 return false;
             }
 

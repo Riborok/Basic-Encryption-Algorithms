@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Cryptography.En_Decryption
 {
@@ -11,6 +12,11 @@ namespace Cryptography.En_Decryption
         {
             _startUpperLetter = char.ToUpper(startLetter);
             _endUpperLetter = char.ToUpper(endLetter);
+        }
+        
+        public string RemoveNonAlphabetic(string s)
+        {
+            return new string(s.Where(Contains).ToArray());
         }
 
         public bool Contains(char c)

@@ -54,6 +54,7 @@
         <Compile Include="En-Decryption\DecimationCipher.cs" />
         <Compile Include="En-Decryption\InverseKeyGenerator.cs" />
         <Compile Include="En-Decryption\TranspositionCipher.cs" />
+        <Compile Include="En-Decryption\TranspositionTable.cs" />
         <Compile Include="En-Decryption\VigenerCipher.cs" />
         <Compile Include="En-Decryption\VigenerKeyGenerator.cs" />
         <Compile Include="Encryptor.cs">
