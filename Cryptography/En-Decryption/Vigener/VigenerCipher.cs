@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Text;
 
-namespace Cryptography.En_Decryption
+namespace Cryptography.En_Decryption.Vigener
 {
     public class VigenerCipher : Cipher
     {
