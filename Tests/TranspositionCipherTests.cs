@@ -1,4 +1,5 @@
 ﻿using Cryptography.En_Decryption;
+using Cryptography.En_Decryption.Transposition;
 using NUnit.Framework;
 using Tests.Utilities;
 
