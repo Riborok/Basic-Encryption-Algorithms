@@ -50,9 +50,18 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="En-Decryption\Alphabet.cs" />
+        <Compile Include="En-Decryption\Alphabets.cs" />
         <Compile Include="En-Decryption\Cipher.cs" />
         <Compile Include="En-Decryption\DecimationCipher.cs" />
         <Compile Include="En-Decryption\InverseKeyGenerator.cs" />
+        <Compile Include="En-Decryption\Playfair\MapCreator.cs" />
+        <Compile Include="En-Decryption\Playfair\Matrices2D.cs" />
+        <Compile Include="En-Decryption\Playfair\MatrixCoordinate.cs" />
+        <Compile Include="En-Decryption\Playfair\MatrixFillerWithEnAlphabet.cs" />
+        <Compile Include="En-Decryption\Playfair\MatrixNums.cs" />
+        <Compile Include="En-Decryption\Playfair\PlayfairCipher.cs" />
+        <Compile Include="En-Decryption\Playfair\PlayfairQuadraticKey.cs" />
+        <Compile Include="En-Decryption\Playfair\PlayfairQuadraticKeyFactory.cs" />
         <Compile Include="En-Decryption\TranspositionCipher.cs" />
         <Compile Include="En-Decryption\TranspositionTable.cs" />
         <Compile Include="En-Decryption\VigenerCipher.cs" />

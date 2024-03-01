@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Cryptography.En_Decryption;
 
 namespace Tests.Utilities
 {

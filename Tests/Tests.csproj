@@ -46,9 +46,9 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="DecimationCypherTests.cs" />
+        <Compile Include="PlayfairCipherTests.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="TranspositionCipherTests.cs" />
-        <Compile Include="Utilities\Alphabets.cs" />
         <Compile Include="Utilities\Checker.cs" />
         <Compile Include="Utilities\DigitWordGenerator.cs" />
         <Compile Include="Utilities\EnWordGenerator.cs" />

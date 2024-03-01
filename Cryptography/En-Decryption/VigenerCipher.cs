@@ -22,7 +22,7 @@ namespace Cryptography.En_Decryption
 
         private string GenerateCiphertext(string plaintext, string vigenerKeyword)
         {
-            StringBuilder encryptedText = new StringBuilder();
+            StringBuilder encryptedText = new StringBuilder(plaintext.Length);
             for (int i = 0; i < plaintext.Length; i++)
                 encryptedText.Append(GetEncryptChar(plaintext[i], vigenerKeyword[i]));
 
@@ -43,7 +43,7 @@ namespace Cryptography.En_Decryption
         
         private string GeneratePlaintext(string ciphertext, string vigenerKeyword)
         {
-            StringBuilder decryptedText = new StringBuilder();
+            StringBuilder decryptedText = new StringBuilder(ciphertext.Length);
             for (int i = 0; i < ciphertext.Length; i++)
                 decryptedText.Append(GetDecryptChar(ciphertext[i], vigenerKeyword[i]));
 

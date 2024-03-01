@@ -1,33 +1,42 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Cryptography.En_Decryption
 {
-    public class Alphabet
+    public class Alphabet : IEnumerable<char>
     {
         private readonly char _startUpperLetter;
         private readonly char _endUpperLetter;
+        private readonly char? _delimiter;
 
-        public Alphabet(char startLetter, char endLetter)
+        public Alphabet(Alphabet alphabet) : 
+            this(alphabet._startUpperLetter, alphabet._endUpperLetter, alphabet._delimiter) {  }
+        
+        public Alphabet(Alphabet alphabet, char delimiter) 
+            : this(alphabet._startUpperLetter, alphabet._endUpperLetter)
+        {
+            _delimiter = delimiter;
+        }
+        
+        public Alphabet(char startLetter, char endLetter, char? delimiter = null)
         {
             _startUpperLetter = char.ToUpper(startLetter);
             _endUpperLetter = char.ToUpper(endLetter);
+            _delimiter = delimiter;
         }
         
+        public IEnumerator<char> GetEnumerator()
+        {
+            for (char c = _startUpperLetter; c <= _endUpperLetter; c++)
+                yield return c;
+        }
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
         public string RemoveNonAlphabetic(string s)
         {
             return new string(s.Where(Contains).ToArray());
-        }
-
-        public bool Contains(char c)
-        {
-            c = char.ToUpper(c);
-            return IsLetter(c);
-        }
-
-        private bool IsLetter(char c)
-        {
-            return c >= _startUpperLetter && c <= _endUpperLetter;
         }
 
         /// <exception cref="ArgumentException">Thrown when the letter is not in the alphabet.</exception>
@@ -64,6 +73,16 @@ namespace Cryptography.En_Decryption
             return char.ToUpper(c) - _startUpperLetter;
         }
         
+        public bool Contains(char c)
+        {
+            c = char.ToUpper(c);
+            return IsLetter(c) || IsDelimiter(c);
+        }
+
+        private bool IsLetter(char c) => c >= _startUpperLetter && c <= _endUpperLetter;
+        
+        private bool IsDelimiter(char c) => c == _delimiter;
+
         /// <exception cref="ArgumentOutOfRangeException">Thrown when the index is out of range.</exception>
         public char GetLetter(int index)
         {

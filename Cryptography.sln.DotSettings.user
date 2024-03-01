@@ -3,6 +3,7 @@
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;NUnit3x::4E90B910-3EAB-48E5-A273-037FF6552460::.NETFramework,Version=v4.8::Tests.DecimationCipherTests.Check_InverseKey&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::4E90B910-3EAB-48E5-A273-037FF6552460::.NETFramework,Version=v4.8::Tests.TranspositionCipherTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::4E90B910-3EAB-48E5-A273-037FF6552460::.NETFramework,Version=v4.8::Tests.PlayfairCipherTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=Encryption_002FEncryptor/@EntryIndexedValue">True</s:Boolean>
