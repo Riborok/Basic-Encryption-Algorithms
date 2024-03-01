@@ -1,4 +1,7 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
+using System.Text;
+using Cryptography.Utilities;
 
 namespace Cryptography.En_Decryption.Playfair
 {
@@ -13,50 +16,65 @@ namespace Cryptography.En_Decryption.Playfair
             _playfairQuadraticKeyFactory = playfairQuadraticKeyFactory;
         }
 
+        public override string Encrypt(string plaintext, IEnumerable<string> keywords)
+        {
+            return base.Encrypt(ExtraLetterManipulator.AddExtraLetterIfOddLength(plaintext), keywords);
+        }
+        
+        public override string Decrypt(string ciphertext, IEnumerable<string> keywords)
+        {
+            return ExtraLetterManipulator.RemoveLastExtraLetterIfPresent(base.Decrypt(ciphertext, keywords));
+        }
+        
         protected override string Encrypt(string plaintext, string keyword)
         {
             var mim = new MatrixIndicesMapping(0, 3, 1, 2);
-            return ProcessText(plaintext, keyword, mim).ToString();
+            Debug.Assert(plaintext.Length.IsEven());
+            return ProcessText(plaintext, keyword, mim);
         }
 
         protected override string Decrypt(string ciphertext, string keyword)
         {
             var mim = new MatrixIndicesMapping(1, 2, 0, 3);
-            return ExtraLetterManipulator.RemoveExtraLetters(ProcessText(ciphertext, keyword, mim));
+            Debug.Assert(ciphertext.Length.IsEven());
+            return ProcessText(ciphertext, keyword, mim);
         }
 
-        private StringBuilder ProcessText(string text, string keyword, MatrixIndicesMapping mim)
+        private string ProcessText(string text, string keyword, MatrixIndicesMapping mim)
         {
-            var pqk = _playfairQuadraticKeyFactory.Create(keyword);
+            var encryptionContext = new EncryptionContext(_playfairQuadraticKeyFactory.Create(keyword), mim);
             var processingText = new StringBuilder(text.Length);
 
-            for (int i = 0; i < text.Length; i++)
+            for (int i = 0; i < text.Length; i += 2)
             {
-                var letterPair = GetLetterPair(text, ref i);
-                var encryptedLetterPair = EncryptLetterPair(pqk, mim, letterPair);
-                processingText.Append(encryptedLetterPair.Item1);
-                processingText.Append(encryptedLetterPair.Item2);
+                var encryptedLetterPair = encryptionContext.EncryptLetters(text[i], text[i + 1]);
+                processingText.Append(encryptedLetterPair.Letter1).Append(encryptedLetterPair.Letter2);
             }
 
-            return processingText;
+            return processingText.ToString();
         }
         
-        private static (char, char) GetLetterPair(string text, ref int index)
+        private readonly struct EncryptionContext
         {
-            var letter1 = text[index];
-            var letter2 = ExtraLetterManipulator.GetNextLetter(text, ref index);
-            return (letter1, letter2);
-        }
-        
-        private static (char, char) EncryptLetterPair(IPlayfairQuadraticKey pqk, MatrixIndicesMapping mim, (char, char) letterPair)
-        {
-            var letterCoord1 = pqk[mim.Coord1Index, letterPair.Item1];
-            var letterCoord2 = pqk[mim.Coord2Index, letterPair.Item2];
+            private readonly IPlayfairQuadraticKey _pqk;
+            private readonly MatrixIndicesMapping _mim;
 
-            var encryptedLetter1 = pqk[mim.Letter1Index, letterCoord1.Row, letterCoord2.Column];
-            var encryptedLetter2 = pqk[mim.Letter2Index, letterCoord2.Row, letterCoord1.Column];
+            public EncryptionContext(IPlayfairQuadraticKey pqk, MatrixIndicesMapping mim)
+            {
+                _pqk = pqk;
+                _mim = mim;
+            }
 
-            return (encryptedLetter1, encryptedLetter2);
+            public (char Letter1, char Letter2) EncryptLetters(char letter1, char letter2)
+            {
+                var letterCoord1 = _pqk[_mim.Coord1Index, letter1];
+                var letterCoord2 = _pqk[_mim.Coord2Index, letter2];
+
+                var encryptedLetter1 = _pqk[_mim.Letter1Index, letterCoord1.Row, letterCoord2.Column];
+                var encryptedLetter2 = _pqk[_mim.Letter2Index, letterCoord2.Row, letterCoord1.Column];
+
+                return (encryptedLetter1, encryptedLetter2);
+            }
         }
     }
 }

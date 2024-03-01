@@ -15,8 +15,8 @@ namespace Tests
         [Test]
         public void EncryptDecrypt_RandomPlaintextAndKeywords_ReturnsOriginalText()
         {
-            const int keyCount = 1;
-            var plaintext = EnWordGenerator.GenerateWord();
+            const int keyCount = 10;
+            var plaintext = EnWordGenerator.GenerateWord().ToUpper().Replace('J', 'I');
 
             var keywords = new string[keyCount];
             for (int i = 0; i < keyCount; i++)

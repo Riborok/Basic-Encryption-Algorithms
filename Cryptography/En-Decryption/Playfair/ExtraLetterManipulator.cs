@@ -1,4 +1,4 @@
-﻿using System.Text;
+﻿using Cryptography.Utilities;
 
 namespace Cryptography.En_Decryption.Playfair
 {
@@ -6,29 +6,23 @@ namespace Cryptography.En_Decryption.Playfair
     {
         private const char ExtraLetter = 'X';
         
-        public static string RemoveExtraLetters(StringBuilder text)
+        public static string RemoveLastExtraLetterIfPresent(string text)
         {
-            if (text.Length < 3)
-                return text.ToString();
+            if (text.Length == 0)
+                return "";
             
-            int lastIndex = text.Length - 1;
-            
-            var result = new StringBuilder(text.Length).Append(text[0]);
-            for (int i = 1; i < lastIndex; i++)
-                if (IsNotExtraLetter(text[i]) || IsNotSurroundedBySameLetter(text, i))
-                    result.Append(text[i]);
-
-            if (IsNotExtraLetter(text[lastIndex]))
-                result.Append(text[lastIndex]);
-
-            return result.ToString();
+            return IsLastLetterExtra(text) ? text.Substring(0, text.Length - 1) : text;
         }
-        private static bool IsNotExtraLetter(char letter) => letter != ExtraLetter;
-        private static bool IsNotSurroundedBySameLetter(StringBuilder text, int index) => text[index - 1] != text[index + 1];
 
-        public static char GetNextLetter(string text, ref int index)
+        private static bool IsLastLetterExtra(string text)
         {
-            return index + 1 < text.Length && text[index + 1] != text[index] ? text[++index] : ExtraLetter;
+            int lastIndex = text.Length - 1;
+            return text[lastIndex] == ExtraLetter;
+        }
+
+        public static string AddExtraLetterIfOddLength(string text)
+        {
+            return text.Length.IsOdd() ? text + ExtraLetter : text;
         }
     }
 }

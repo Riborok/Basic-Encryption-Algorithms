@@ -14,7 +14,7 @@ namespace Cryptography.En_Decryption
             KeyAlphabet = keyAlphabet;
         }
         
-        public string Encrypt(string plaintext, IEnumerable<string> keywords)
+        public virtual string Encrypt(string plaintext, IEnumerable<string> keywords)
         {
             plaintext = TextAlphabet.RemoveNonAlphabetic(plaintext);
             foreach (string keyword in keywords)
@@ -27,7 +27,7 @@ namespace Cryptography.En_Decryption
             return plaintext;
         }
         
-        public string Decrypt(string ciphertext, IEnumerable<string> keywords)
+        public virtual string Decrypt(string ciphertext, IEnumerable<string> keywords)
         {
             ciphertext = TextAlphabet.RemoveNonAlphabetic(ciphertext);
             foreach (string keyword in keywords.Reverse())
