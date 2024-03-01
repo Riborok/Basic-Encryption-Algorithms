@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Cryptography.En_Decryption;
+using Cryptography.En_Decryption.Decimation;
 using NUnit.Framework;
 using Tests.Utilities;
 

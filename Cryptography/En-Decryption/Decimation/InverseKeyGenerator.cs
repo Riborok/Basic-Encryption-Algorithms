@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Cryptography.En_Decryption {
+namespace Cryptography.En_Decryption.Decimation {
     public class InverseKeysGenerator {
         private readonly int _symbolsAmount;
         

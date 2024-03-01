@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Cryptography.En_Decryption {
+namespace Cryptography.En_Decryption.Decimation {
     public class DecimationCipher : Cipher {
         public InverseKeysGenerator InverseKeysGenerator { get; }
 

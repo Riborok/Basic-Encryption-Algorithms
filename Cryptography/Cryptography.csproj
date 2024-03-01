@@ -52,8 +52,8 @@
         <Compile Include="En-Decryption\Alphabet.cs" />
         <Compile Include="En-Decryption\Alphabets.cs" />
         <Compile Include="En-Decryption\Cipher.cs" />
-        <Compile Include="En-Decryption\DecimationCipher.cs" />
-        <Compile Include="En-Decryption\InverseKeyGenerator.cs" />
+        <Compile Include="En-Decryption\Decimation\DecimationCipher.cs" />
+        <Compile Include="En-Decryption\Decimation\InverseKeyGenerator.cs" />
         <Compile Include="En-Decryption\Playfair\ExtraLetterManipulator.cs" />
         <Compile Include="En-Decryption\Playfair\MapCreator.cs" />
         <Compile Include="En-Decryption\Playfair\Matrices2D.cs" />
