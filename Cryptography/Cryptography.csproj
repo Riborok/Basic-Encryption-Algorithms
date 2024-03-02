@@ -50,12 +50,29 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="En-Decryption\Alphabet.cs" />
+        <Compile Include="En-Decryption\Alphabets.cs" />
         <Compile Include="En-Decryption\Cipher.cs" />
-        <Compile Include="En-Decryption\DecimationCipher.cs" />
-        <Compile Include="En-Decryption\InverseKeyGenerator.cs" />
-        <Compile Include="En-Decryption\TranspositionCipher.cs" />
-        <Compile Include="En-Decryption\VigenerCipher.cs" />
-        <Compile Include="En-Decryption\VigenerKeyGenerator.cs" />
+        <Compile Include="En-Decryption\Decimation\DecimationCipher.cs" />
+        <Compile Include="En-Decryption\Decimation\InverseKeyGenerator.cs" />
+        <Compile Include="En-Decryption\Playfair\ExtraLetterManipulator.cs" />
+        <Compile Include="En-Decryption\Playfair\MapCreator.cs" />
+        <Compile Include="En-Decryption\Playfair\Matrices2D.cs" />
+        <Compile Include="En-Decryption\Playfair\MatrixCoordinate.cs" />
+        <Compile Include="En-Decryption\Playfair\MatrixFillerWithEnAlphabet.cs" />
+        <Compile Include="En-Decryption\Playfair\MatrixIndicesMapping.cs" />
+        <Compile Include="En-Decryption\Playfair\PlayfairCipher.cs" />
+        <Compile Include="En-Decryption\Playfair\PlayfairQuadraticKey.cs" />
+        <Compile Include="En-Decryption\Playfair\PlayfairQuadraticKeyFactory.cs" />
+        <Compile Include="En-Decryption\Transposition\ColumnOrder.cs" />
+        <Compile Include="En-Decryption\Transposition\TextGenerator.cs" />
+        <Compile Include="En-Decryption\Transposition\TranspositionCipher.cs" />
+        <Compile Include="En-Decryption\Transposition\TranspositionTable.cs" />
+        <Compile Include="En-Decryption\Transposition\TranspositionTableFiller.cs" />
+        <Compile Include="En-Decryption\Vigener\DirectVigenerKeyGenerator.cs" />
+        <Compile Include="En-Decryption\Vigener\ProgressiveVigenerKeyGenerator.cs" />
+        <Compile Include="En-Decryption\Vigener\SelfGeneratingVigenerKeyGenerator.cs" />
+        <Compile Include="En-Decryption\Vigener\VigenerCipher.cs" />
+        <Compile Include="En-Decryption\Vigener\VigenerKeyGenerator.cs" />
         <Compile Include="Encryptor.cs">
             <SubType>Form</SubType>
         </Compile>
@@ -64,6 +81,7 @@
         </Compile>
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="Utilities\IntExtensions.cs" />
         <EmbeddedResource Include="Encryptor.resx">
           <DependentUpon>Encryptor.cs</DependentUpon>
         </EmbeddedResource>

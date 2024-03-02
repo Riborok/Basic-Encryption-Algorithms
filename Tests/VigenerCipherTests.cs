@@ -1,15 +1,15 @@
 ﻿using Cryptography.En_Decryption;
-using Cryptography.En_Decryption.Transposition;
+using Cryptography.En_Decryption.Vigener;
 using NUnit.Framework;
 using Tests.Utilities;
 
 namespace Tests
 {
     [TestFixture]
-    public class TranspositionCipherTests
+    public class VigenerCipherTests
     {
-        private readonly TranspositionCipher _cipher = 
-            new TranspositionCipher(Alphabets.EnAlphabet, Alphabets.EnAlphabet);
+        private readonly VigenerCipher _cipher = 
+            new VigenerCipher(Alphabets.EnAlphabet, new SelfGeneratingVigenerKeyGenerator());
 
         [Test]
         public void EncryptDecrypt_Plaintext_Shorter_Keyword_ReturnsOriginalText()

@@ -14,12 +14,12 @@ namespace Cryptography.En_Decryption
             KeyAlphabet = keyAlphabet;
         }
         
-        public string Encrypt(string plaintext, IEnumerable<string> keywords)
+        public virtual string Encrypt(string plaintext, IEnumerable<string> keywords)
         {
-            plaintext = RemoveNonAlphabetic(TextAlphabet, plaintext);
+            plaintext = TextAlphabet.RemoveNonAlphabetic(plaintext);
             foreach (string keyword in keywords)
             {
-                var cleanedKeyword = RemoveNonAlphabetic(KeyAlphabet, keyword);
+                var cleanedKeyword = KeyAlphabet.RemoveNonAlphabetic(keyword);
                 if (cleanedKeyword.Length != 0)
                     plaintext = Encrypt(plaintext, cleanedKeyword);
             }
@@ -27,22 +27,17 @@ namespace Cryptography.En_Decryption
             return plaintext;
         }
         
-        public string Decrypt(string ciphertext, IEnumerable<string> keywords)
+        public virtual string Decrypt(string ciphertext, IEnumerable<string> keywords)
         {
-            ciphertext = RemoveNonAlphabetic(TextAlphabet, ciphertext);
+            ciphertext = TextAlphabet.RemoveNonAlphabetic(ciphertext);
             foreach (string keyword in keywords.Reverse())
             {
-                var cleanedKeyword = RemoveNonAlphabetic(KeyAlphabet, keyword);
+                var cleanedKeyword = KeyAlphabet.RemoveNonAlphabetic(keyword);
                 if (cleanedKeyword.Length != 0)
                     ciphertext = Decrypt(ciphertext, cleanedKeyword);
             }
             
             return ciphertext;
-        }
-        
-        private static string RemoveNonAlphabetic(Alphabet alphabet, string s)
-        {
-            return new string(s.Where(alphabet.Contains).ToArray());
         }
 
         protected abstract string Encrypt(string plaintext, string keyword);

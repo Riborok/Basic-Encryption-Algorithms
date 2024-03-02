@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Cryptography.En_Decryption {
+namespace Cryptography.En_Decryption.Decimation {
     public class InverseKeysGenerator {
         private readonly int _symbolsAmount;
         
@@ -28,7 +28,7 @@ namespace Cryptography.En_Decryption {
             }
 
             if (r > 1)
-                throw new ArithmeticException($"InverseKeysGenerator: Given key {key} isn't reversible!");
+                throw new ArithmeticException($"{nameof(InverseKeysGenerator)}: Given key '{key}' isn't reversible!");
 
             if (t < 0)
                 t += _symbolsAmount;
