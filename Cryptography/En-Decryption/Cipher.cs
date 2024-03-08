@@ -17,12 +17,13 @@ namespace Cryptography.En_Decryption
         public virtual string Encrypt(string plaintext, IEnumerable<string> keywords)
         {
             plaintext = TextAlphabet.RemoveNonAlphabetic(plaintext);
-            foreach (string keyword in keywords)
-            {
-                var cleanedKeyword = KeyAlphabet.RemoveNonAlphabetic(keyword);
-                if (cleanedKeyword.Length != 0)
-                    plaintext = Encrypt(plaintext, cleanedKeyword);
-            }
+            if (plaintext.Length != 0)
+                foreach (string keyword in keywords)
+                {
+                    var cleanedKeyword = KeyAlphabet.RemoveNonAlphabetic(keyword);
+                    if (cleanedKeyword.Length != 0)
+                        plaintext = Encrypt(plaintext, cleanedKeyword);
+                }
 
             return plaintext;
         }
@@ -30,12 +31,13 @@ namespace Cryptography.En_Decryption
         public virtual string Decrypt(string ciphertext, IEnumerable<string> keywords)
         {
             ciphertext = TextAlphabet.RemoveNonAlphabetic(ciphertext);
-            foreach (string keyword in keywords.Reverse())
-            {
-                var cleanedKeyword = KeyAlphabet.RemoveNonAlphabetic(keyword);
-                if (cleanedKeyword.Length != 0)
-                    ciphertext = Decrypt(ciphertext, cleanedKeyword);
-            }
+            if (ciphertext.Length != 0)
+                foreach (string keyword in keywords.Reverse())
+                {
+                    var cleanedKeyword = KeyAlphabet.RemoveNonAlphabetic(keyword);
+                    if (cleanedKeyword.Length != 0)
+                        ciphertext = Decrypt(ciphertext, cleanedKeyword);
+                }
             
             return ciphertext;
         }

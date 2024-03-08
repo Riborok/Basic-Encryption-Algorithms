@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace Cryptography.En_Decryption.Decimation {
     public class DecimationCipher : Cipher {
@@ -21,28 +22,18 @@ namespace Cryptography.En_Decryption.Decimation {
         }
 
         private bool IsKeyCorrect(string stringKey, out int key, out string message) {
-            if (!int.TryParse(stringKey, out key)) {
+            message = string.Empty;
+            
+            if (!int.TryParse(stringKey, out key)) 
                 message = $"{nameof(DecimationCipher)}: The key '{stringKey}' is not a number!";
-                return false;
-            }
-            
-            if (!AreRelPrime(key, TextAlphabet.Size)) {
+            else if (!AreRelPrime(key, TextAlphabet.Size))
                 message = $"{nameof(DecimationCipher)}: The key '{stringKey}' is not mutually simple with the amount of characters in the alphabet, which is {TextAlphabet.Size}!";
-                return false;
-            }
-            
-            if (key > TextAlphabet.Size) {
+            else if (key > TextAlphabet.Size)
                 message = $"{nameof(DecimationCipher)}: The key '{stringKey}' is larger than the amount of characters in the alphabet, which is {TextAlphabet.Size}!";
-                return false;
-            }
-            
-            if (key <= 0) {
+            else if (key <= 0)
                 message = $"{nameof(DecimationCipher)}: The key '{stringKey}' cannot be less than or equal to zero!";
-                return false;
-            }
-
-            message = "";
-            return true;
+            
+            return message == string.Empty;
         }
 
         protected override string Encrypt(string text, string stringKey) {
@@ -50,12 +41,11 @@ namespace Cryptography.En_Decryption.Decimation {
                 throw new ArgumentException(message);    
             }
             
-            string ciphertext = "";
-            foreach (var letter in text) {
-                ciphertext += TextAlphabet.MultiplyLetter(letter, key);
-            }
-
-            return ciphertext;
+            var ciphertext = new StringBuilder(text.Length);
+            foreach (var letter in text)
+                ciphertext.Append(TextAlphabet.MultiplyLetter(letter, key));
+            
+            return ciphertext.ToString();
         }
 
         protected override string Decrypt(string ciphertext, string stringKey) {
@@ -65,12 +55,11 @@ namespace Cryptography.En_Decryption.Decimation {
             
             int inverseKey = InverseKeysGenerator.GenerateInverseKey(key);
             
-            string text = "";
-            foreach (var letter in ciphertext) {
-                text += TextAlphabet.MultiplyLetter(letter, inverseKey);
-            }
-            
-            return text;
+            var text = new StringBuilder(ciphertext.Length);
+            foreach (var letter in ciphertext)
+                text.Append(TextAlphabet.MultiplyLetter(letter, inverseKey));
+
+            return text.ToString();
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Cryptography.En_Decryption.Playfair
 
         private static string GetKeyword(IReadOnlyList<string> keywords, int matrixNum)
         {
-            return matrixNum < keywords.Count ? keywords[matrixNum] : "";
+            return matrixNum < keywords.Count ? keywords[matrixNum] : string.Empty;
         }
 
         private static IReadOnlyList<char> CreateLetterOrder(string keyword)
