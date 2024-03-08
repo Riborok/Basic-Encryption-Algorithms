@@ -11,7 +11,7 @@ namespace Tests.Utilities
         
         static ReservedEnWords()
         {
-            Words = File.ReadAllLines(@"..\..\Utilities\ReservedEnWords.txt")
+            Words = File.ReadAllLines(@"..\..\Utilities\reserved_en_words.txt")
                 .OrderBy(w => w.Length)
                 .Select(s => Alphabets.EnAlphabet.RemoveNonAlphabetic(s))
                 .ToArray();

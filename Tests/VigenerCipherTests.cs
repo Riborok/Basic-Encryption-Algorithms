@@ -47,11 +47,15 @@ namespace Tests
         [Test]
         public void EncryptDecrypt_RandomPlaintextAndKeywords_ReturnsOriginalText()
         {
-            const int keyCount = 10;
-            var plaintext = EnWordGenerator.GenerateWord();
-            var keywords = EnWordGenerator.GenerateWords(keyCount);
+            const int timesCount = 4200;
+            for (int times = 0; times < timesCount; times++)
+            {
+                const int keyCount = 10;
+                var plaintext = EnWordGenerator.GenerateWord();
+                var keywords = EnWordGenerator.GenerateWords(keyCount);
 
-            Checker.Check(_ciphers, plaintext, keywords);
+                Checker.Check(_ciphers, plaintext, keywords);   
+            }
         }
     }
 }

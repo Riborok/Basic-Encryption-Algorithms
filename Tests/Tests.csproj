@@ -65,7 +65,8 @@
       </ProjectReference>
     </ItemGroup>
     <ItemGroup>
-      <Content Include="Utilities\ReservedEnWords.txt" />
+      <Content Include="Utilities\reserved_en_words.txt" />
+      <Content Include="Utilities\words_alpha.txt" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

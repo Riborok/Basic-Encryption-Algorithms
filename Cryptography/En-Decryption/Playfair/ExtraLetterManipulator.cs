@@ -2,7 +2,7 @@
 
 namespace Cryptography.En_Decryption.Playfair
 {
-    internal static class ExtraLetterManipulator
+    public static class ExtraLetterManipulator
     {
         private const char ExtraLetter = 'X';
         

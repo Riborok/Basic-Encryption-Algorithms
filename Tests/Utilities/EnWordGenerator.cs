@@ -1,25 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Net;
 using Cryptography.En_Decryption;
 
 namespace Tests.Utilities
 {
     public static class EnWordGenerator
     {
-        private const string Url = "https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt";
-        
         private static readonly Random Random = new Random();
-        private static readonly string[] Words = LoadWords();
+        private static readonly string[] Words;
 
-        private static string[] LoadWords()
+        static EnWordGenerator()
         {
-            string wordsData;
-            using (WebClient webClient = new WebClient())
-                wordsData = webClient.DownloadString(Url);
-            return wordsData
-                .Split('\n')
+            Words = File.ReadAllLines(@"..\..\Utilities\words_alpha.txt")
                 .Select(s => Alphabets.EnAlphabet.RemoveNonAlphabetic(s))
                 .ToArray();
         }
