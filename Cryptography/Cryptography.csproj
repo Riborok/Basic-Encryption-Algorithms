@@ -68,11 +68,11 @@
         <Compile Include="En-Decryption\Transposition\TranspositionCipher.cs" />
         <Compile Include="En-Decryption\Transposition\TranspositionTable.cs" />
         <Compile Include="En-Decryption\Transposition\TranspositionTableFiller.cs" />
-        <Compile Include="En-Decryption\Vigener\DirectVigenerKeyGenerator.cs" />
-        <Compile Include="En-Decryption\Vigener\ProgressiveVigenerKeyGenerator.cs" />
-        <Compile Include="En-Decryption\Vigener\SelfGeneratingVigenerKeyGenerator.cs" />
+        <Compile Include="En-Decryption\Vigener\DirectKeyFactory.cs" />
+        <Compile Include="En-Decryption\Vigener\ProgressiveKeyFactory.cs" />
+        <Compile Include="En-Decryption\Vigener\SelfGeneratingKeyFactory.cs" />
         <Compile Include="En-Decryption\Vigener\VigenerCipher.cs" />
-        <Compile Include="En-Decryption\Vigener\VigenerKeyGenerator.cs" />
+        <Compile Include="En-Decryption\Vigener\VigenerKeyFactory.cs" />
         <Compile Include="Encryptor.cs">
             <SubType>Form</SubType>
         </Compile>

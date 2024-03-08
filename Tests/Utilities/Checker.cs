@@ -17,5 +17,11 @@ namespace Tests.Utilities
                                   $"Decrypted text: {decryptedText}\n";
             Assert.AreEqual(plaintext.ToUpper(), decryptedText.ToUpper(), errorMessage);
         }
+
+        public static void Check(IEnumerable<Cipher> ciphers, string plaintext, IReadOnlyCollection<string> keywords)
+        {
+            foreach (var cipher in ciphers)
+                Check(cipher, plaintext, keywords);
+        }
     }
 }
