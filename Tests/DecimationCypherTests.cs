@@ -49,19 +49,21 @@ namespace Tests {
             const int timesCount = 4200;
             for (int times = 0; times < timesCount; times++)
             {
+                const int keyCount = 10;
                 var plaintext = EnWordGenerator.GenerateWord();
-                Checker.Check(_cipher, plaintext, GetRandomSubarray(keys));   
+                Checker.Check(_cipher, plaintext, GetRandomSequence(keys, keyCount));   
             }
         }
         
-        private static string[] GetRandomSubarray(string[] keys)
+        private static string[] GetRandomSequence(IReadOnlyList<string> keys, int keyCount)
         {
             Random random = new Random();
-            int subarrayLength = random.Next(1, keys.Length + 1); 
-            int startIndex = random.Next(0, keys.Length - subarrayLength + 1); 
-            string[] subarray = new string[subarrayLength];
-            Array.Copy(keys, startIndex, subarray, 0, subarrayLength);
-            return subarray;
+            string[] selectedKeys = new string[keyCount];
+
+            for (int i = 0; i < keyCount; i++)
+                selectedKeys[i] = keys[random.Next(keys.Count)];
+            
+            return selectedKeys;
         }
     }
 }
