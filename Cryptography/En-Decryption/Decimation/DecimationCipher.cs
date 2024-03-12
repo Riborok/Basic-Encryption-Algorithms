@@ -2,12 +2,13 @@
 using System.Text;
 
 namespace Cryptography.En_Decryption.Decimation {
-    public class DecimationCipher : Cipher {
-        public InverseKeysGenerator InverseKeysGenerator { get; }
+    public class DecimationCipher : Cipher
+    {
+        private readonly InverseKeysGenerator _inverseKeysGenerator;
 
         public DecimationCipher(Alphabet textAlphabet, Alphabet keyAlphabet) 
             : base(textAlphabet, keyAlphabet) {
-            InverseKeysGenerator = new InverseKeysGenerator(TextAlphabet.Size);
+            _inverseKeysGenerator = new InverseKeysGenerator(textAlphabet.Size);
         }
 
         private static bool AreRelPrime(int a, int b) {
@@ -53,7 +54,7 @@ namespace Cryptography.En_Decryption.Decimation {
                 throw new ArgumentException(message);    
             }
             
-            int inverseKey = InverseKeysGenerator.GenerateInverseKey(key);
+            int inverseKey = _inverseKeysGenerator.GenerateInverseKey(key);
             
             var text = new StringBuilder(ciphertext.Length);
             foreach (var letter in ciphertext)

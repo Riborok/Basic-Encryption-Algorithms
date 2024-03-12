@@ -8,6 +8,7 @@ namespace Cryptography.En_Decryption.Decimation {
             _symbolsAmount = symbolsAmount;
         }
         
+        /// <exception cref="ArgumentException">Thrown when the key is not reversible (when the key and the symbols amount are not mutually prime).</exception>
         public int GenerateInverseKey(int key) {
             int t = 0;
             int newT = 1;
@@ -28,7 +29,7 @@ namespace Cryptography.En_Decryption.Decimation {
             }
 
             if (r > 1)
-                throw new ArithmeticException($"{nameof(InverseKeysGenerator)}: Given key '{key}' isn't reversible!");
+                throw new ArgumentException($"{nameof(InverseKeysGenerator)}: The key '{key}' isn't reversible!");
 
             if (t < 0)
                 t += _symbolsAmount;
