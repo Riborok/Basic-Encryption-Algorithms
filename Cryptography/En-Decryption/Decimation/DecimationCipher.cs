@@ -37,6 +37,11 @@ namespace Cryptography.En_Decryption.Decimation {
             return message == string.Empty;
         }
 
+        /// <exception cref="ArgumentException">
+        /// Thrown | When the key is not a number. |
+        /// When the key is not reversible (the key and the symbols amount are not relatively prime, the key
+        /// is larger than the symbols amount or when the key is less than or equal to zero).
+        /// </exception>
         protected override string Encrypt(string text, string stringKey) {
             if (!IsKeyCorrect(stringKey, out int key, out string message)) {
                 throw new ArgumentException(message);    

@@ -79,6 +79,7 @@
         <Compile Include="Encryptor.Designer.cs">
             <DependentUpon>Encryptor.cs</DependentUpon>
         </Compile>
+        <Compile Include="Managers\FileManager.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Utilities\IntExtensions.cs" />
@@ -106,6 +107,11 @@
     </ItemGroup>
     <ItemGroup>
         <None Include="App.config" />
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="Resources\folder.png" />
+      <Content Include="Resources\_new.png" />
+      <Content Include="Resources\save.png" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
