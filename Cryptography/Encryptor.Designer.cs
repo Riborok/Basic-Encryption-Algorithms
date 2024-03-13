@@ -68,7 +68,7 @@
             this.lbKey.Name = "lbKey";
             this.lbKey.Size = new System.Drawing.Size(300, 33);
             this.lbKey.TabIndex = 6;
-            this.lbKey.Text = "Ключ:";
+            this.lbKey.Text = "Key:";
             this.lbKey.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // butEncrypt
@@ -78,7 +78,7 @@
             this.butEncrypt.Name = "butEncrypt";
             this.butEncrypt.Size = new System.Drawing.Size(300, 31);
             this.butEncrypt.TabIndex = 7;
-            this.butEncrypt.Text = "Шифровать";
+            this.butEncrypt.Text = "Encrypt";
             this.butEncrypt.UseVisualStyleBackColor = true;
             // 
             // lbErrors
@@ -88,7 +88,7 @@
             this.lbErrors.Name = "lbErrors";
             this.lbErrors.Size = new System.Drawing.Size(300, 33);
             this.lbErrors.TabIndex = 8;
-            this.lbErrors.Text = "Ошибки:";
+            this.lbErrors.Text = "Errors:";
             this.lbErrors.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tbErrors
@@ -107,7 +107,7 @@
             this.lbEnryptMethod.Name = "lbEnryptMethod";
             this.lbEnryptMethod.Size = new System.Drawing.Size(300, 33);
             this.lbEnryptMethod.TabIndex = 10;
-            this.lbEnryptMethod.Text = "Метод:";
+            this.lbEnryptMethod.Text = "Method:";
             this.lbEnryptMethod.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lbInitText
@@ -117,7 +117,7 @@
             this.lbInitText.Name = "lbInitText";
             this.lbInitText.Size = new System.Drawing.Size(300, 33);
             this.lbInitText.TabIndex = 11;
-            this.lbInitText.Text = "Исходный текст:";
+            this.lbInitText.Text = "Initial text:";
             this.lbInitText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lbCipherText
@@ -127,14 +127,14 @@
             this.lbCipherText.Name = "lbCipherText";
             this.lbCipherText.Size = new System.Drawing.Size(300, 33);
             this.lbCipherText.TabIndex = 13;
-            this.lbCipherText.Text = "Шифротекст:";
+            this.lbCipherText.Text = "Ciphertext:";
             this.lbCipherText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // cbEncryptMethod
             // 
             this.cbEncryptMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbEncryptMethod.FormattingEnabled = true;
-            this.cbEncryptMethod.Items.AddRange(new object[] { "Метод Децимации", "Метод Плейфера (С использованием 4 таблиц)", "Вращающийся квадрат", "Метод Вижнера (Обычный ключ)", "Метод Вижнера (Прогрессивный ключ)", "Метод Вижнера (Саморегенерирующийся ключ)" });
+            this.cbEncryptMethod.Items.AddRange(new object[] { "Decimation Method", "Playfair Method (Using 4 tables)", "Transposition Method", "Rotating grid", "Vigener Method (Simple key)", "Vigener Method (Progressive key)", "Vigener Method (Autokey)" });
             this.cbEncryptMethod.Location = new System.Drawing.Point(360, 45);
             this.cbEncryptMethod.Name = "cbEncryptMethod";
             this.cbEncryptMethod.Size = new System.Drawing.Size(300, 21);
@@ -206,7 +206,7 @@
             this.butDecrypt.Name = "butDecrypt";
             this.butDecrypt.Size = new System.Drawing.Size(300, 31);
             this.butDecrypt.TabIndex = 21;
-            this.butDecrypt.Text = "Дешифровать";
+            this.butDecrypt.Text = "Decrypt";
             this.butDecrypt.UseVisualStyleBackColor = true;
             // 
             // butNewInitText
