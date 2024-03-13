@@ -2,14 +2,14 @@
 
 namespace Cryptography.En_Decryption.Playfair
 {
-    internal static class ExtraLetterManipulator
+    public static class ExtraLetterManipulator
     {
         private const char ExtraLetter = 'X';
         
         public static string RemoveLastExtraLetterIfPresent(string text)
         {
             if (text.Length == 0)
-                return "";
+                return string.Empty;
             
             return IsLastLetterExtra(text) ? text.Substring(0, text.Length - 1) : text;
         }

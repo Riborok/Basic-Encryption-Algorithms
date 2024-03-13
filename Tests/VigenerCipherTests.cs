@@ -8,8 +8,21 @@ namespace Tests
     [TestFixture]
     public class VigenerCipherTests
     {
-        private readonly VigenerCipher _cipher = 
-            new VigenerCipher(Alphabets.EnAlphabet, new SelfGeneratingVigenerKeyGenerator());
+        private readonly VigenerCipher[] _ciphers;
+
+        public VigenerCipherTests()
+        {
+            var directKeyFactory = new DirectKeyFactory(Alphabets.EnAlphabet);
+            var progressiveKeyFactory = new ProgressiveKeyFactory(Alphabets.EnAlphabet);
+            var selfGeneratingKeyFactory = new SelfGeneratingKeyFactory(Alphabets.EnAlphabet);
+
+            _ciphers = new[]
+            {
+                new VigenerCipher(directKeyFactory),
+                new VigenerCipher(progressiveKeyFactory),
+                new VigenerCipher(selfGeneratingKeyFactory),
+            };
+        }
 
         [Test]
         public void EncryptDecrypt_Plaintext_Shorter_Keyword_ReturnsOriginalText()
@@ -18,7 +31,7 @@ namespace Tests
             var plaintext = ReservedEnWords.ShortestWord;
             var keywords = ReservedEnWords.GetLongestKeys(keyCount);
 
-            Checker.Check(_cipher, plaintext, keywords);
+            Checker.Check(_ciphers, plaintext, keywords);
         }
 
         [Test]
@@ -28,17 +41,21 @@ namespace Tests
             var plaintext = ReservedEnWords.AllWordsAsString;
             var keywords = ReservedEnWords.GetShortestKeys(keyCount);
 
-            Checker.Check(_cipher, plaintext, keywords);
+            Checker.Check(_ciphers, plaintext, keywords);
         }
         
         [Test]
         public void EncryptDecrypt_RandomPlaintextAndKeywords_ReturnsOriginalText()
         {
-            const int keyCount = 10;
-            var plaintext = EnWordGenerator.GenerateWord();
-            var keywords = EnWordGenerator.GenerateWords(keyCount);
+            const int timesCount = 4200;
+            for (int times = 0; times < timesCount; times++)
+            {
+                const int keyCount = 10;
+                var plaintext = EnWordGenerator.GenerateWord();
+                var keywords = EnWordGenerator.GenerateWords(keyCount);
 
-            Checker.Check(_cipher, plaintext, keywords);
+                Checker.Check(_ciphers, plaintext, keywords);   
+            }
         }
     }
 }

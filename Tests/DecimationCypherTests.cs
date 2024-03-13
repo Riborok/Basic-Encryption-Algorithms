@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Cryptography.En_Decryption;
 using Cryptography.En_Decryption.Decimation;
 using NUnit.Framework;
@@ -16,8 +17,9 @@ namespace Tests {
             int[] keys = { 3, 5, 7, 9, 11, 15, 17, 19, 21, 23, 25 };
             int[] inverseKeys = { 9, 21, 15, 3, 19, 7, 23, 11, 5, 17, 25 };
 
+            var inverseKeysGenerator = new InverseKeysGenerator(Alphabets.EnAlphabet.Size);
             for (int i = 0; i < keys.Length; i++) {
-                Assert.AreEqual(_cipher.InverseKeysGenerator.GenerateInverseKey(keys[i]), inverseKeys[i]);
+                Assert.AreEqual(inverseKeysGenerator.GenerateInverseKey(keys[i]), inverseKeys[i]);
             }
         }
         
@@ -40,15 +42,28 @@ namespace Tests {
             Assert.AreEqual(expectedCipherText, actualCipherText);
         }
         
-        /*[Test]
+        [Test]
         public void EncryptDecrypt_RandomPlaintextAndKeywords_ReturnsOriginalText()
         {
-            const int keyCount = 10;
-            
-            var plaintext = EnWordGenerator.GenerateWord();
-            var keywords = DigitWordGenerator.GenerateWords(keyCount, Alphabets.EnAlphabet.Size);
+            var keys = new []{ "3", "5", "7", "9", "11", "15", "17", "19", "21", "23", "25" };
+            const int timesCount = 4200;
+            for (int times = 0; times < timesCount; times++)
+            {
+                const int keyCount = 10;
+                var plaintext = EnWordGenerator.GenerateWord();
+                Checker.Check(_cipher, plaintext, GetRandomSequence(keys, keyCount));   
+            }
+        }
+        
+        private static string[] GetRandomSequence(IReadOnlyList<string> keys, int keyCount)
+        {
+            Random random = new Random();
+            string[] selectedKeys = new string[keyCount];
 
-            Checker.Check(_cipher, plaintext, keywords);
-        }*/
+            for (int i = 0; i < keyCount; i++)
+                selectedKeys[i] = keys[random.Next(keys.Count)];
+            
+            return selectedKeys;
+        }
     }
 }

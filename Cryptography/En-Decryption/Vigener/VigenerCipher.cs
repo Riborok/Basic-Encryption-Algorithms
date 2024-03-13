@@ -5,17 +5,17 @@ namespace Cryptography.En_Decryption.Vigener
 {
     public class VigenerCipher : Cipher
     {
-        private readonly IVigenerKeyGenerator _vigenerKeyGenerator;
+        private readonly VigenerKeyFactory _vigenerKeyGenerator;
 
-        public VigenerCipher(Alphabet alphabet, IVigenerKeyGenerator vigenerKeyGenerator) 
-            : base(alphabet, alphabet)
+        public VigenerCipher(VigenerKeyFactory vigenerKeyGenerator) 
+            : base(vigenerKeyGenerator.Alphabet, vigenerKeyGenerator.Alphabet)
         {
             _vigenerKeyGenerator = vigenerKeyGenerator;
         }
         
         protected override string Encrypt(string plaintext, string keyword)
         {
-            string vigenerKeyword = _vigenerKeyGenerator.GenerateKey(KeyAlphabet, plaintext, keyword, true);
+            string vigenerKeyword = _vigenerKeyGenerator.GenerateEncryptionKey(plaintext, keyword);
             Debug.Assert(plaintext.Length == vigenerKeyword.Length);
             return GenerateCiphertext(plaintext, vigenerKeyword);
         }
@@ -36,7 +36,7 @@ namespace Cryptography.En_Decryption.Vigener
         
         protected override string Decrypt(string ciphertext, string keyword)
         {
-            string vigenerKeyword = _vigenerKeyGenerator.GenerateKey(KeyAlphabet, ciphertext, keyword, false);
+            string vigenerKeyword = _vigenerKeyGenerator.GenerateDecryptionKey(ciphertext, keyword);
             Debug.Assert(ciphertext.Length == vigenerKeyword.Length);
             return GeneratePlaintext(ciphertext, vigenerKeyword);
         }

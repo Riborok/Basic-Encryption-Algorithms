@@ -87,7 +87,7 @@ namespace Cryptography.En_Decryption
         public char GetLetter(int index)
         {
             if (IsIndexOutOfRange(index))
-                throw new ArgumentOutOfRangeException($"{nameof(Alphabet)} {this}: Index '{index}' is out of range.");
+                throw new ArgumentException($"{nameof(Alphabet)} {this}: Index '{index}' is out of range.");
             
             return (char)(_startUpperLetter + index);
         }

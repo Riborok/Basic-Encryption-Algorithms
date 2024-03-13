@@ -50,7 +50,6 @@
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="TranspositionCipherTests.cs" />
         <Compile Include="Utilities\Checker.cs" />
-        <Compile Include="Utilities\DigitWordGenerator.cs" />
         <Compile Include="Utilities\EnWordGenerator.cs" />
         <Compile Include="Utilities\ReservedEnWords.cs" />
         <Compile Include="VigenerCipherTests.cs" />
@@ -65,7 +64,8 @@
       </ProjectReference>
     </ItemGroup>
     <ItemGroup>
-      <Content Include="Utilities\ReservedEnWords.txt" />
+      <Content Include="Utilities\reserved_en_words.txt" />
+      <Content Include="Utilities\words_alpha.txt" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

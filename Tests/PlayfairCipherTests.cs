@@ -15,14 +15,19 @@ namespace Tests
         [Test]
         public void EncryptDecrypt_RandomPlaintextAndKeywords_ReturnsOriginalText()
         {
-            const int keyCount = 10;
-            var plaintext = EnWordGenerator.GenerateWord().ToUpper().Replace('J', 'I');
+            const int timesCount = 4200;
+            for (int times = 0; times < timesCount; times++)
+            {
+                const int keyCount = 10;
+                var plaintext = EnWordGenerator.GenerateWord().ToUpper().Replace('J', 'I');
+                plaintext = ExtraLetterManipulator.RemoveLastExtraLetterIfPresent(plaintext);
+                
+                var keywords = new string[keyCount];
+                for (int i = 0; i < keyCount; i++)
+                    keywords[i] = string.Join(KeyDelimiter.ToString(), EnWordGenerator.GenerateWords(MatrixCount));
 
-            var keywords = new string[keyCount];
-            for (int i = 0; i < keyCount; i++)
-                keywords[i] = string.Join(KeyDelimiter.ToString(), EnWordGenerator.GenerateWords(MatrixCount));
-
-            Checker.Check(_cipher, plaintext, keywords);
+                Checker.Check(_cipher, plaintext, keywords);   
+            }
         }
     }
 }
