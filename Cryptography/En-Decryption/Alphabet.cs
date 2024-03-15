@@ -7,31 +7,31 @@ namespace Cryptography.En_Decryption
 {
     public class Alphabet : IEnumerable<char>
     {
-        private readonly char _startUpperLetter;
-        private readonly char _endUpperLetter;
+        private readonly string _sequence;
+        private readonly Dictionary<char, int> _dictionary = new Dictionary<char, int>();
         private readonly char? _delimiter;
 
-        public Alphabet(Alphabet alphabet) : 
-            this(alphabet._startUpperLetter, alphabet._endUpperLetter, alphabet._delimiter) {  }
-        
-        public Alphabet(Alphabet alphabet, char delimiter) 
-            : this(alphabet._startUpperLetter, alphabet._endUpperLetter)
+        public Alphabet(Alphabet alphabet, char delimiter)
         {
+            _sequence = alphabet._sequence;
+            _dictionary = alphabet._dictionary;
             _delimiter = delimiter;
         }
         
-        public Alphabet(char startLetter, char endLetter, char? delimiter = null)
+        public Alphabet(string sequence, char? delimiter = null)
         {
-            _startUpperLetter = char.ToUpper(startLetter);
-            _endUpperLetter = char.ToUpper(endLetter);
             _delimiter = delimiter;
+            _sequence = sequence.ToUpper();
+            FillDictionary();
+        }
+
+        private void FillDictionary()
+        {
+            for (int i = 0; i < _sequence.Length; i++)
+                _dictionary[_sequence[i]] = i;
         }
         
-        public IEnumerator<char> GetEnumerator()
-        {
-            for (char c = _startUpperLetter; c <= _endUpperLetter; c++)
-                yield return c;
-        }
+        public IEnumerator<char> GetEnumerator() => _sequence.GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         public string RemoveNonAlphabetic(string s)
@@ -67,10 +67,11 @@ namespace Cryptography.En_Decryption
         /// <exception cref="ArgumentException">Thrown when the character is not in the alphabet.</exception>
         public int GetIndex(char c)
         {
+            c = char.ToUpper(c);
             if (!Contains(c))
                 throw new ArgumentException($"{nameof(Alphabet)} {this}: Letter '{c}' is not in the alphabet.");
 
-            return char.ToUpper(c) - _startUpperLetter;
+            return _dictionary[c];
         }
         
         public bool Contains(char c)
@@ -79,7 +80,7 @@ namespace Cryptography.En_Decryption
             return IsLetter(c) || IsDelimiter(c);
         }
 
-        private bool IsLetter(char c) => c >= _startUpperLetter && c <= _endUpperLetter;
+        private bool IsLetter(char c) => _dictionary.ContainsKey(c);
         
         private bool IsDelimiter(char c) => c == _delimiter;
 
@@ -89,19 +90,13 @@ namespace Cryptography.En_Decryption
             if (IsIndexOutOfRange(index))
                 throw new ArgumentException($"{nameof(Alphabet)} {this}: Index '{index}' is out of range.");
             
-            return (char)(_startUpperLetter + index);
+            return _sequence[index];
         }
         
-        private bool IsIndexOutOfRange(int index)
-        {
-            return index < 0 || index >= Size;
-        }
+        private bool IsIndexOutOfRange(int index) => index < 0 || index >= Size;
 
-        public override string ToString()
-        {
-            return $"{_startUpperLetter}..{_endUpperLetter}";
-        }
+        public override string ToString() => _sequence;
 
-        public int Size => _endUpperLetter - _startUpperLetter + 1;
+        public int Size => _sequence.Length;
     }
 }
