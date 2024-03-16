@@ -15,12 +15,14 @@ namespace Cryptography.Managers {
             _tbText = tbText;
         }
 
-        public void WarnIfNotSaved() {
+        public DialogResult WarnIfNotSaved() {
+            DialogResult result = DialogResult.None;
+            
             if (!IsSaved) {
-                DialogResult result = MessageBox.Show(
-                    $@"The file ${_tbFileName.Text} is not saved. Do you want to save it?",
+                 result = MessageBox.Show(
+                    $@"The {_tbFileName.Tag} file is not saved. Do you want to save it?",
                     @"Warning",
-                    MessageBoxButtons.YesNo,
+                    MessageBoxButtons.YesNoCancel,
                     MessageBoxIcon.Warning
                 );
 
@@ -28,10 +30,13 @@ namespace Cryptography.Managers {
                     Save();
                 }
             }
+            
+            return result;
         }
         
         public void Create() {
-            WarnIfNotSaved();
+            if (WarnIfNotSaved() == DialogResult.Cancel)
+                return;
             
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             
@@ -55,7 +60,8 @@ namespace Cryptography.Managers {
         }
 
         public void Open() {
-            WarnIfNotSaved();
+            if (WarnIfNotSaved() == DialogResult.Cancel)
+                return;
             
             OpenFileDialog openFileDialog = new OpenFileDialog();
             
@@ -66,18 +72,21 @@ namespace Cryptography.Managers {
             
             if (openFileDialog.ShowDialog() == DialogResult.OK) {
                 _path = openFileDialog.FileName;
-                _tbFileName.Text = Path.GetFileName(_path);
                 IsSaved = true;
-                _tbText.Text = File.ReadAllText(_path);
+
+                try {
+                    _tbFileName.Text = Path.GetFileName(_path);
+                    _tbText.Text = File.ReadAllText(_path);
+                } catch {
+                    throw new AggregateException("Path of opened file not found.");
+                }
             }
         }
         
         public void Save() {
             if (string.IsNullOrEmpty(_path)) {
                 Create();
-            }
-
-            if (!string.IsNullOrEmpty(_path)) {
+            } else {
                 try {
                     File.WriteAllText(_path, _tbText.Text);
                     IsSaved = true;

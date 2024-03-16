@@ -4,7 +4,7 @@ namespace Cryptography.En_Decryption.Vigener
 {
     public abstract class VigenerKeyFactory
     {
-        public Alphabet Alphabet { get; }
+        internal Alphabet Alphabet { get; }
 
         protected VigenerKeyFactory(Alphabet alphabet) => Alphabet = alphabet;
 
