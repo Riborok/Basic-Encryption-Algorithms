@@ -151,6 +151,7 @@
             this.cbEncryptMethod.Name = "cbEncryptMethod";
             this.cbEncryptMethod.Size = new System.Drawing.Size(300, 21);
             this.cbEncryptMethod.TabIndex = 14;
+            this.cbEncryptMethod.SelectedIndex = 0;
             this.cbEncryptMethod.SelectedIndexChanged += new System.EventHandler(this.cbEncryptMethod_SelectedIndexChanged);
             // 
             // tbKey1
@@ -345,6 +346,7 @@
             this.cbLanguage.Name = "cbLanguage";
             this.cbLanguage.Size = new System.Drawing.Size(74, 21);
             this.cbLanguage.TabIndex = 31;
+            this.cbLanguage.SelectedIndex = 0;
             // 
             // lbSize
             // 
