@@ -12,27 +12,30 @@ namespace Cryptography.En_Decryption.Decimation {
         }
 
         private static bool AreRelPrime(int a, int b) {
+            a = Math.Abs(a);
+            b = Math.Abs(b);
+
             while (b != 0)
             {
                 int temp = b;
                 b = a % b;
                 a = temp;
             }
-            
+    
             return a == 1;
         }
 
         private bool IsKeyCorrect(string stringKey, out int key, out string message) {
             message = string.Empty;
-            
-            if (!int.TryParse(stringKey, out key)) 
+
+            if (!int.TryParse(stringKey, out key))
                 message = $"{nameof(DecimationCipher)}: The key '{stringKey}' is not a number!";
             else if (!AreRelPrime(key, TextAlphabet.Size))
                 message = $"{nameof(DecimationCipher)}: The key '{stringKey}' is not mutually simple with the amount of characters in the alphabet, which is {TextAlphabet.Size}!";
-            else if (key > TextAlphabet.Size)
+            else if (key > TextAlphabet.Size || key < -TextAlphabet.Size)
                 message = $"{nameof(DecimationCipher)}: The key '{stringKey}' is larger than the amount of characters in the alphabet, which is {TextAlphabet.Size}!";
-            else if (key <= 0)
-                message = $"{nameof(DecimationCipher)}: The key '{stringKey}' cannot be less than or equal to zero!";
+            // else if (key <= 0)
+            //     message = $"{nameof(DecimationCipher)}: The key '{stringKey}' cannot be less than or equal to zero!";
             
             return message == string.Empty;
         }

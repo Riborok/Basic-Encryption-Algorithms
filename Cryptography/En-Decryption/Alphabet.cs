@@ -41,7 +41,8 @@ namespace Cryptography.En_Decryption
 
         /// <exception cref="ArgumentException">Thrown when the letter is not in the alphabet.</exception>
         public char MultiplyLetter(char letter, int number) {
-            return GetLetter(GetIndex(letter) * number % Size);
+            int newIndex = GetIndex(letter) * number % Size;
+            return GetLetter(newIndex < 0 ? newIndex + Size : newIndex);
         }
         
         /// <exception cref="ArgumentException">Thrown when either c1 or c2 is not in the alphabet.</exception>
