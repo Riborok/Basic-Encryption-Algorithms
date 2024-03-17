@@ -63,6 +63,7 @@
         <Compile Include="En-Decryption\Playfair\PlayfairCipher.cs" />
         <Compile Include="En-Decryption\Playfair\PlayfairQuadraticKey.cs" />
         <Compile Include="En-Decryption\Playfair\PlayfairQuadraticKeyFactory.cs" />
+        <Compile Include="En-Decryption\RotatingGrille\GrilleCipher.cs" />
         <Compile Include="En-Decryption\Transposition\ColumnOrder.cs" />
         <Compile Include="En-Decryption\Transposition\TextGenerator.cs" />
         <Compile Include="En-Decryption\Transposition\TranspositionCipher.cs" />

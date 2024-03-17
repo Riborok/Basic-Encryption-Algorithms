@@ -23,8 +23,7 @@ namespace Tests
             for (int times = 0; times < timesCount; times++)
             {
                 const int keyCount = 10;
-                var plaintext = EnWordGenerator.GenerateWord();
-
+                var plaintext = string.Join("", EnWordGenerator.GenerateWords(100));
                 Checker.TurningGrilleCheck(_cipher, plaintext, keyword);   
             }
         }

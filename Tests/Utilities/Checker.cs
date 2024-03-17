@@ -17,6 +17,18 @@ namespace Tests.Utilities
                                   $"Decrypted text: {decryptedText}\n";
             Assert.AreEqual(plaintext.ToUpper(), decryptedText.ToUpper(), errorMessage);
         }
+        
+        public static void TurningGrilleCheck(Cipher cipher, string plaintext, IReadOnlyCollection<string> keywords)
+        {
+            string ciphertext = cipher.Encrypt(plaintext, keywords);
+            string decryptedText = cipher.Decrypt(ciphertext, keywords);
+
+            string errorMessage = $"Decryption failed for {cipher.GetType().Name}\n" +
+                                  $"Keys: {string.Join(", ", keywords)}\n" +
+                                  $"Plaintext: {plaintext}\n" +
+                                  $"Decrypted text: {decryptedText}\n";
+            Assert.AreEqual(plaintext.ToUpper(), decryptedText.ToUpper().Substring(0, plaintext.Length), errorMessage);
+        }
 
         public static void Check(IEnumerable<Cipher> ciphers, string plaintext, IReadOnlyCollection<string> keywords)
         {

@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Linq;
-using Cryptography.Utilities;
+using System.Text;
+using Cryptography.Extensions;
+
 
 namespace Cryptography.En_Decryption.RotatingGrille
 {
     public class GrilleCipher : Cipher
     {
-        private Alphabet _textAlphabet;
         
         public GrilleCipher(Alphabet textAlphabet, Alphabet keyAlphabet) 
             : base(textAlphabet, keyAlphabet)
         {
-            _textAlphabet = textAlphabet;
         }
 
         protected override string Encrypt(string plaintext, string keyword)
@@ -19,13 +19,13 @@ namespace Cryptography.En_Decryption.RotatingGrille
             var matrixDimension = (int)Math.Sqrt(keyword.Length);
             if (matrixDimension * matrixDimension != keyword.Length)
             {
-                throw new ArgumentException("Неправильно введён ключ (размер ключа не совпадет с кол-вом ячеек в квадратной матрице");
+                throw new ArgumentException("Incorrect key (key length doesn't match with the amount of cells in matrix");
             }
 
             bool[,] keyMatrix = CreateKeyMatrix(keyword);
             if (!CheckHoles(keyMatrix))
             {
-                throw new ArgumentException("Неправильно заполнены дырки в шаблоне");
+                throw new ArgumentException("Incorrectly filled holes in the template (grille)");
             }
 
             return FillMatrixUsingGrille(plaintext, keyMatrix);;
@@ -36,89 +36,86 @@ namespace Cryptography.En_Decryption.RotatingGrille
             var matrixDimension = (int)Math.Sqrt(keyword.Length);
             if (matrixDimension * matrixDimension != keyword.Length)
             {
-                throw new ArgumentException("Неправильно введён ключ (размер ключа не совпадет с кол-вом ячеек в квадратной матрице");
+                throw new ArgumentException("Incorrect key (key length doesn't match with the amount of cells in matrix");
             }
 
             bool[,] keyMatrix = CreateKeyMatrix(keyword);
             if (!CheckHoles(keyMatrix))
             {
-                throw new ArgumentException("Неправильно заполнены дырки в шаблоне");
+                throw new ArgumentException("Incorrectly filled holes in the template (grille)");
             }
             return ReadGrill(ciphertext, keyMatrix);
         }
         
-        private static char[,] FillWithRandom(char[,] charMatrix)
+        private char[,] FillWithRandom(char[,] charMatrix)
         {
             int size = charMatrix.GetLength(0);
+            Random random = new Random();
             for (int i = 0; i < size; i++)
             {
                 for (int j = 0; j < size; j++)
                 {
                     if (charMatrix[i, j] == '\0')
                     {
-                        //TODO Random char
-                        charMatrix[i, j] = 'X';
+                        charMatrix[i, j] = TextAlphabet.GetLetter(random.Next(TextAlphabet.Size));
                     }
                 }
             }
 
             return charMatrix;
         }
-        private static string FillMatrixUsingGrille(string plaintext, bool[,] grille)
-            {
-                int size = grille.GetLength(0);
-                char[,] filledMatrix = new char[size, size];
-                int stringIndex = 0;
-                var flag = size.IsOdd();
-                if (flag) grille[size / 2, size / 2] = true;
-                
+        private string FillMatrixUsingGrille(string plaintext, bool[,] grille)
+        {
+            int size = grille.GetLength(0);
+            char[,] filledMatrix = new char[size, size];
+            int stringIndex = 0;
+            var flag = size.IsOdd();
+            StringBuilder ciphertext = new StringBuilder(plaintext.Length);
             
-                string ciphertext = "";
-
-                // Проходим по всем ячейкам решетки
-                do
+            // Проходим по всем ячейкам решетки
+            do
+            {
+            
+                for (int k = 0; k < 4; k++)
                 {
-                
-                    for (int k = 0; k < 4; k++)
+                    for (int i = 0; i < size; i++)
                     {
-                        for (int i = 0; i < size; i++)
+                        for (int j = 0; j < size; j++)
                         {
-                            for (int j = 0; j < size; j++)
+                            // Если в решетке есть дырка, добавляем символ из строки
+                            if (grille[i, j])
                             {
-                                // Если в решетке есть дырка, добавляем символ из строки
-                                if (grille[i, j])
-                                {
-                                    
-                                    // Если индекс строки выходит за пределы длины строки, прерываем цикл
-                                    if (stringIndex >= plaintext.Length)
-                                    {
-                                        filledMatrix = FillWithRandom(filledMatrix);
-                                        break;
-                                    }
                                 
-                                    filledMatrix[i, j] = plaintext[stringIndex++];
+                                // Если индекс строки выходит за пределы длины строки, прерываем цикл
+                                if (stringIndex >= plaintext.Length)
+                                {
+                                    filledMatrix = FillWithRandom(filledMatrix);
+                                    break;
+                                }
+                            
+                                filledMatrix[i, j] = plaintext[stringIndex++];
 
 
-                                    if (flag && i == size / 2 && j == size / 2)
-                                    {
-                                        grille[i, j] = false;
+                                if (flag && i == size / 2 && j == size / 2)
+                                {
+                                    grille[i, j] = false;
 
-                                    }
                                 }
                             }
                         }
-
-                        grille = RotateGrid(grille);
                     }
 
-                    ciphertext = CipherTextAppend(ciphertext, filledMatrix);
-                    filledMatrix = ClearCipherMatrix(filledMatrix);
-                    if (flag) grille[size / 2, size / 2] = true;
-                } while (stringIndex < plaintext.Length);
-                
-                return ciphertext;
-            }
-        
+                    grille = RotateGrid(grille);
+                }
+
+                ciphertext = CipherTextAppend(ciphertext, filledMatrix);
+                filledMatrix = ClearCipherMatrix(filledMatrix);
+                if (flag) grille[size / 2, size / 2] = true;
+            } while (stringIndex < plaintext.Length);
+            
+            return ciphertext.ToString();
+        }
+            
         static char[,] FillGrillWithCipher(char[,] fillMatrix, string ciphertextPart)
         {
             int size = fillMatrix.GetLength(0);
@@ -127,16 +124,7 @@ namespace Cryptography.En_Decryption.RotatingGrille
             {
                 for (int j = 0; j < size; j++)
                 {
-                    try
-                    {
-                        // fillMatrix[i, j] = index < ciphertextPart.Length ? ciphertextPart[index++] : '\0';
-                        fillMatrix[i, j] = ciphertextPart[index++];
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e);
-                        throw;
-                    }
+                    fillMatrix[i, j] = ciphertextPart[index++];
                 }
             }
 
@@ -148,9 +136,8 @@ namespace Cryptography.En_Decryption.RotatingGrille
             char[,] filledMatrix = new char[size, size];
             int stringIndex = 0;
             var flag = size.IsOdd();
-            if (flag) grille[size / 2, size / 2] = true;
 
-            string plaintext = "";
+            StringBuilder plaintext = new StringBuilder(ciphertext.Length);
 
             // Проходим по всем ячейкам решетки
             
@@ -169,7 +156,7 @@ namespace Cryptography.En_Decryption.RotatingGrille
                                 // Если индекс строки выходит за пределы длины строки, прерываем цикл
                                 if (stringIndex >= ciphertext.Length) break;
                             
-                                plaintext += filledMatrix[i, j];
+                                plaintext.Append(filledMatrix[i, j]);
                                 stringIndex++;
 
 
@@ -188,7 +175,7 @@ namespace Cryptography.En_Decryption.RotatingGrille
                 if (flag) grille[size / 2, size / 2] = true;
             } while (stringIndex < ciphertext.Length - 1);
             
-            return plaintext;
+            return plaintext.ToString();
         }
         
         static char[,] ClearCipherMatrix(char[,] cipherMatrix)
@@ -196,21 +183,21 @@ namespace Cryptography.En_Decryption.RotatingGrille
             var size = cipherMatrix.GetLength(0);
             return new char[size, size];
         }
-        
-        private static string CipherTextAppend(string ciphertext, char[,] cipherMatrix)
+            
+        private static StringBuilder CipherTextAppend(StringBuilder ciphertext, char[,] cipherMatrix)
         {
             int size = cipherMatrix.GetLength(0);
             for (int i = 0; i < size; i++)
             {
                 for (int j = 0; j < size; j++)
                 {
-                    ciphertext += cipherMatrix[i, j];
+                    ciphertext.Append(cipherMatrix[i, j]);
                 }
             }
 
             return ciphertext;
         }
-        
+            
 
         private bool[,] CreateKeyMatrix(string keyword)
         {
@@ -228,7 +215,7 @@ namespace Cryptography.En_Decryption.RotatingGrille
 
             return keyMatrix;
         }
-        
+            
         private static bool CheckHoles(bool[,] grid)
         {
             int size = grid.GetLength(0);
@@ -267,23 +254,22 @@ namespace Cryptography.En_Decryption.RotatingGrille
             return true;
         }
 
-        // Функция для вращения решетки на 90 градусов по часовой стрелке
+            // Функция для вращения решетки на 90 градусов по часовой стрелке
         private static bool[,] RotateGrid(bool[,] grid)
         {
             int size = grid.GetLength(0);
             bool[,] rotatedGrid = new bool[size, size];
+            Array.Copy(grid, rotatedGrid, grid.Length);
 
             for (int i = 0; i < size; i++)
             {
                 for (int j = 0; j < size; j++)
                 {
-                    rotatedGrid[i, j] = grid[size - j - 1, i];
+                    grid[i, j] = rotatedGrid[size - j - 1, i];
                 }
             }
 
-            return rotatedGrid;
+            return grid;
         }
     }
-    
-    
 }

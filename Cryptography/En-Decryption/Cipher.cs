@@ -16,7 +16,9 @@ namespace Cryptography.En_Decryption
         
         public virtual string Encrypt(string plaintext, IEnumerable<string> keywords)
         {
-            plaintext = TextAlphabet.RemoveNonAlphabetic(plaintext);
+            plaintext = TextAlphabet
+                .RemoveNonAlphabetic(plaintext)
+                .ToUpper();
             if (plaintext.Length != 0)
                 foreach (string keyword in keywords)
                 {
@@ -30,7 +32,9 @@ namespace Cryptography.En_Decryption
         
         public virtual string Decrypt(string ciphertext, IEnumerable<string> keywords)
         {
-            ciphertext = TextAlphabet.RemoveNonAlphabetic(ciphertext);
+            ciphertext = TextAlphabet
+                .RemoveNonAlphabetic(ciphertext)
+                .ToUpper();
             if (ciphertext.Length != 0)
                 foreach (string keyword in keywords.Reverse())
                 {

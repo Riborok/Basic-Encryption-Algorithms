@@ -49,6 +49,7 @@
         <Compile Include="PlayfairCipherTests.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="TranspositionCipherTests.cs" />
+        <Compile Include="TurningGrilleTests.cs" />
         <Compile Include="Utilities\Checker.cs" />
         <Compile Include="Utilities\EnWordGenerator.cs" />
         <Compile Include="Utilities\ReservedEnWords.cs" />

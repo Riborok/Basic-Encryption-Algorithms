@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Cryptography.En_Decryption;
 using Cryptography.En_Decryption.Decimation;
 using Cryptography.En_Decryption.Playfair;
+using Cryptography.En_Decryption.RotatingGrille;
 using Cryptography.En_Decryption.Transposition;
 using Cryptography.En_Decryption.Vigener;
 using Cryptography.FileUtils;
@@ -160,9 +157,7 @@ namespace Cryptography {
                 case 1:
                     return (new TranspositionCipher(textAlphabet, textAlphabet), new[] { tbKey1.Text, tbKey2.Text });
                 case 2:
-                // var transpositionCipher = new TranspositionCipher(textAlphabet, textAlphabet);
-                // tbCiphertext.Text = transpositionCipher.Encrypt(tbInitText.Text, new [] {tbKey1.Text});
-                // break;
+                    return (new GrilleCipher(textAlphabet, Alphabets.BinaryAlphabet), new []{GetDvgKey()});
                 case 3:
                     return (new VigenerCipher(new DirectKeyFactory(textAlphabet)), new[] { tbKey1.Text });
                 case 4:
@@ -190,14 +185,30 @@ namespace Cryptography {
             };
         }
 
+        private readonly Color zero = Color.White;
+        private readonly Color one = Color.Aquamarine;
+        
+        private string GetDvgKey() {
+            StringBuilder stringBuilder = new StringBuilder(dgvKey.Rows.Count * dgvKey.Columns.Count);
+
+            for (int i = 0; i < dgvKey.Rows.Count; i++) {
+                for (int j = 0; j < dgvKey.Columns.Count; j++) {
+                    stringBuilder.Append(dgvKey.Rows[i].Cells[j].Style.BackColor == one ? '1' : '0');
+                }
+            }
+
+            return stringBuilder.ToString();
+        }
+        
         private void dgvKey_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e) {
             DataGridViewCell cell = dgvKey.Rows[e.RowIndex].Cells[e.ColumnIndex];
             
-            cell.Style.BackColor = cell.Style.BackColor == Color.Aquamarine ? Color.White : Color.Aquamarine;
+            cell.Style.BackColor = cell.Style.BackColor == one ? zero : one;
             
             dgvKey.ClearSelection();
         }
 
+        
         private void nudSize_ValueChanged(object sender, EventArgs e) {
             int newSize = (int)nudSize.Value;
             dgvKey.RowCount = newSize;
