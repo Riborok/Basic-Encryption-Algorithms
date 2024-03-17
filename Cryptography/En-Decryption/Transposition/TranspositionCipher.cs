@@ -13,7 +13,7 @@
                 plaintext.Length, keyword.Length);
             
             transpositionTableFiller.FillWithPlaintext(plaintext);
-            return textGenerator.GenerateCiphertext(ColumnOrder.Create(keyword));
+            return textGenerator.GenerateCiphertext(ColumnOrder.Create(keyword, KeyAlphabet));
         }
 
         protected override string Decrypt(string ciphertext, string keyword)
@@ -21,7 +21,7 @@
             var (transpositionTableFiller, textGenerator) = TranspositionCipherTools.Create(
                 ciphertext.Length, keyword.Length);
             
-            transpositionTableFiller.FillWithCiphertext(ciphertext, ColumnOrder.Create(keyword));
+            transpositionTableFiller.FillWithCiphertext(ciphertext, ColumnOrder.Create(keyword, KeyAlphabet));
             return textGenerator.GeneratePlaintext();
         }
     }
