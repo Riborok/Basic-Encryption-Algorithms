@@ -16,13 +16,12 @@ namespace Cryptography.En_Decryption.Playfair
             _playfairQuadraticKeyFactory = playfairQuadraticKeyFactory;
         }
 
-        public override string Encrypt(string plaintext, IEnumerable<string> keywords)
-        {
+        public override string Encrypt(string plaintext, IEnumerable<string> keywords) {
+            plaintext = TextAlphabet.RemoveNonAlphabetic(plaintext);
             return base.Encrypt(ExtraLetterManipulator.AddExtraLetterIfOddLength(plaintext), keywords);
         }
         
-        public override string Decrypt(string ciphertext, IEnumerable<string> keywords)
-        {
+        public override string Decrypt(string ciphertext, IEnumerable<string> keywords) {
             return ExtraLetterManipulator.RemoveLastExtraLetterIfPresent(base.Decrypt(ciphertext, keywords));
         }
         
