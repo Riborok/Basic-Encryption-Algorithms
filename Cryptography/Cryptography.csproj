@@ -114,6 +114,7 @@
     </ItemGroup>
     <ItemGroup>
       <Content Include="Resources\folder.png" />
+      <Content Include="Resources\main.ico" />
       <Content Include="Resources\notsaved.png" />
       <Content Include="Resources\_new.png" />
       <Content Include="Resources\saved.png" />

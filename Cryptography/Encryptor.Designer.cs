@@ -28,6 +28,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Encryptor));
             this.tbInitText = new System.Windows.Forms.TextBox();
             this.lbKey = new System.Windows.Forms.Label();
             this.butEncrypt = new System.Windows.Forms.Button();
@@ -402,10 +403,12 @@
             this.Controls.Add(this.lbKey);
             this.Controls.Add(this.tbInitText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(15, 15);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "Encryptor";
+            this.Text = "Cryptography";
             ((System.ComponentModel.ISupportInitialize)(this.dgvKey)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSize)).EndInit();
             this.ResumeLayout(false);
