@@ -1,15 +1,9 @@
 ﻿using System;
 
 namespace Cryptography.En_Decryption.Decimation {
-    public class InverseKeysGenerator {
-        private readonly int _symbolsAmount;
-        
-        public InverseKeysGenerator(int symbolsAmount) {
-            _symbolsAmount = symbolsAmount;
-        }
-        
+    public static class InverseKeysGenerator {
         /// <exception cref="ArgumentException">Thrown when the key is not reversible (when the key and the symbols amount are not mutually prime).</exception>
-        public int GenerateInverseKey(int key, int modulus) {
+        public static int GenerateInverseKey(int key, int modulus) {
             key = (key % modulus + modulus) % modulus; // Приводим число к положительному представлению
 
             int m0 = modulus;
