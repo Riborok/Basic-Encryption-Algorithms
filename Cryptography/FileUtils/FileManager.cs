@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -9,10 +10,12 @@ namespace Cryptography.FileUtils {
         private readonly Control _tbText;
         private readonly IFileService _fileService;
         private readonly FileDialogService _dialogService;
+        private readonly Button _butSave;
         
-        public FileManager(Control fileName, Control tbText, IFileService fileService, string filter) {
+        public FileManager(Control fileName, Control tbText, Button butSave, IFileService fileService, string filter) {
             _fileName = fileName;
             _tbText = tbText;
+            _butSave = butSave;
             _fileService = fileService;
             _dialogService = new FileDialogService(filter);
         }
@@ -24,6 +27,7 @@ namespace Cryptography.FileUtils {
 
                 _fileService.CreateFile(_path);
                 _fileName.Text = Path.GetFileName(_path);
+                _butSave.Image = Image.FromFile(@"../../Resources/saved.png");
             }
         }
 
@@ -34,6 +38,7 @@ namespace Cryptography.FileUtils {
 
                 _tbText.Text = _fileService.ReadFile(_path);
                 _fileName.Text = Path.GetFileName(_path);
+                _butSave.Image = Image.FromFile(@"../../Resources/saved.png");
             }
         }
 
@@ -42,6 +47,7 @@ namespace Cryptography.FileUtils {
                 OfferToCreateOrOpenFile();
             if (_path != string.Empty) {
                 _fileService.SaveFile(_path, _tbText.Text);
+                _butSave.Image = Image.FromFile(@"../../Resources/saved.png");
             }
         }
 

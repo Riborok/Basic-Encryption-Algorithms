@@ -28,7 +28,6 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Encryptor));
             this.tbInitText = new System.Windows.Forms.TextBox();
             this.lbKey = new System.Windows.Forms.Label();
             this.butEncrypt = new System.Windows.Forms.Button();
@@ -70,6 +69,7 @@
             this.tbInitText.Name = "tbInitText";
             this.tbInitText.Size = new System.Drawing.Size(300, 105);
             this.tbInitText.TabIndex = 1;
+            this.tbInitText.TextChanged += new System.EventHandler(this.tbInitText_TextChanged);
             // 
             // lbKey
             // 
@@ -150,7 +150,6 @@
             this.cbEncryptMethod.Name = "cbEncryptMethod";
             this.cbEncryptMethod.Size = new System.Drawing.Size(300, 21);
             this.cbEncryptMethod.TabIndex = 14;
-            this.cbEncryptMethod.SelectedIndex = 0;
             this.cbEncryptMethod.SelectedIndexChanged += new System.EventHandler(this.cbEncryptMethod_SelectedIndexChanged);
             // 
             // tbKey1
@@ -171,6 +170,7 @@
             this.tbCiphertext.Name = "tbCiphertext";
             this.tbCiphertext.Size = new System.Drawing.Size(300, 105);
             this.tbCiphertext.TabIndex = 16;
+            this.tbCiphertext.TextChanged += new System.EventHandler(this.tbCiphertext_TextChanged);
             // 
             // butOpenInitText
             // 
@@ -184,7 +184,7 @@
             // 
             // butSaveInitText
             // 
-            this.butSaveInitText.Image = ((System.Drawing.Image)(resources.GetObject("butSaveInitText.Image")));
+            this.butSaveInitText.Image = global::Cryptography.Properties.Resources.save;
             this.butSaveInitText.Location = new System.Drawing.Point(287, 17);
             this.butSaveInitText.Name = "butSaveInitText";
             this.butSaveInitText.Size = new System.Drawing.Size(25, 25);
@@ -344,7 +344,6 @@
             this.cbLanguage.Name = "cbLanguage";
             this.cbLanguage.Size = new System.Drawing.Size(74, 21);
             this.cbLanguage.TabIndex = 31;
-            this.cbLanguage.SelectedIndex = 0;
             // 
             // lbSize
             // 
