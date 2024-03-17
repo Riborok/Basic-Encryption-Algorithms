@@ -19,6 +19,7 @@ namespace Cryptography {
 
         public Encryptor() {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
 
             const string filter = @"Text files (*.txt)|*.txt";
             var fileService = new TextFileService();
@@ -74,24 +75,6 @@ namespace Cryptography {
             } catch (IOException exception) {
                 tbErrors.Text = exception.Message;
             }
-        }
-
-        private void tbInitText_TextChanged(object sender, EventArgs e) {
-            _textFileManager.IsSaved = false;
-        }
-
-        private void tbCiphertext_TextChanged(object sender, EventArgs e) {
-            _ciphertextFileManager.IsSaved = false;
-        }
-
-        private void Encryptor_FormClosing(object sender, FormClosingEventArgs e) {
-            if (_textFileManager.WarnIfNotSaved()) {
-                e.Cancel = true;
-                return;
-            }
-
-            if (_ciphertextFileManager.WarnIfNotSaved())
-                e.Cancel = true;
         }
 
         private void cbEncryptMethod_SelectedIndexChanged(object sender, EventArgs e) {

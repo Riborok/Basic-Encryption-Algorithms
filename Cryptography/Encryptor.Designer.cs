@@ -70,7 +70,6 @@
             this.tbInitText.Name = "tbInitText";
             this.tbInitText.Size = new System.Drawing.Size(300, 105);
             this.tbInitText.TabIndex = 1;
-            this.tbInitText.TextChanged += new System.EventHandler(this.tbInitText_TextChanged);
             // 
             // lbKey
             // 
@@ -172,7 +171,6 @@
             this.tbCiphertext.Name = "tbCiphertext";
             this.tbCiphertext.Size = new System.Drawing.Size(300, 105);
             this.tbCiphertext.TabIndex = 16;
-            this.tbCiphertext.TextChanged += new System.EventHandler(this.tbCiphertext_TextChanged);
             // 
             // butOpenInitText
             // 
@@ -409,7 +407,6 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "Encryptor";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Encryptor_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dgvKey)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSize)).EndInit();
             this.ResumeLayout(false);
