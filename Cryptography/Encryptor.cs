@@ -19,6 +19,9 @@ namespace Cryptography {
 
         public Encryptor() {
             InitializeComponent();
+            cbLanguage.SelectedIndex = 0;
+            cbEncryptMethod.SelectedIndex = 0;
+            
             StartPosition = FormStartPosition.CenterScreen;
 
             const string filter = @"Text files (*.txt)|*.txt";
