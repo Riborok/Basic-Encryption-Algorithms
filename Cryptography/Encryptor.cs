@@ -167,7 +167,7 @@ namespace Cryptography {
                 case 5:
                     return (new VigenerCipher(new SelfGeneratingKeyFactory(textAlphabet)), new[] { tbKey1.Text });
                 case 6:
-                    const char delimiter = ' ';
+                    const char delimiter = '\0';
                     return (new PlayfairCipher(new PlayfairEnQuadraticKeyFactory(delimiter)), new[] {
                         string.Join(delimiter.ToString(),
                             tbKey1.Text, tbKey2.Text,
