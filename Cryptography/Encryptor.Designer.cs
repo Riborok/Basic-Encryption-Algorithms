@@ -28,6 +28,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Encryptor));
             this.tbInitText = new System.Windows.Forms.TextBox();
             this.lbKey = new System.Windows.Forms.Label();
             this.butEncrypt = new System.Windows.Forms.Button();
