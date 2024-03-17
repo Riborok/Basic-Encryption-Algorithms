@@ -1,4 +1,4 @@
-﻿namespace Cryptography.Utilities
+﻿namespace Cryptography.Extensions
 {
     public static class IntExtensions
     {

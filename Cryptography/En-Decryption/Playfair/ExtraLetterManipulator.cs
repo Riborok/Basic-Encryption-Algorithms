@@ -1,4 +1,4 @@
-﻿using Cryptography.Utilities;
+﻿using Cryptography.Extensions;
 
 namespace Cryptography.En_Decryption.Playfair
 {
