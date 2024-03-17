@@ -28,6 +28,10 @@ namespace Cryptography.En_Decryption.RotatingGrille
                 throw new ArgumentException("Incorrectly filled holes in the template (grille)");
             }
 
+            if (!CheckHolesAmount(keyword))
+            {
+                throw new ArgumentException("Incorrect amount of holes");
+            }
             return FillMatrixUsingGrille(plaintext, keyMatrix);;
         }
 
@@ -39,10 +43,20 @@ namespace Cryptography.En_Decryption.RotatingGrille
                 throw new ArgumentException("Incorrect key (key length doesn't match with the amount of cells in matrix");
             }
 
+            if (ciphertext.Length % keyword.Length != 0)
+            {
+                throw new ArgumentException("Incorrect ciphered text (should be multiple of the cells amount");
+            }
+
             bool[,] keyMatrix = CreateKeyMatrix(keyword);
             if (!CheckHoles(keyMatrix))
             {
                 throw new ArgumentException("Incorrectly filled holes in the template (grille)");
+            }
+            
+            if (!CheckHolesAmount(keyword))
+            {
+                throw new ArgumentException("Incorrect amount of holes");
             }
             return ReadGrill(ciphertext, keyMatrix);
         }
@@ -252,6 +266,22 @@ namespace Cryptography.En_Decryption.RotatingGrille
 
             // Если дырки не пересекаются ни при одном положении решетки, возвращаем true
             return true;
+        }
+
+        private static bool CheckHolesAmount(string keyword)
+        {
+            int size = keyword.Length;
+            bool isOddMatrix = size.IsOdd();
+            int correctAmount = isOddMatrix ? size / 4 + 1 : size / 4;
+            int count = 0;
+            foreach (char c in keyword)
+            {
+                if (c == '1')
+                {
+                    count++;
+                }
+            }
+            return correctAmount == count;
         }
 
             // Функция для вращения решетки на 90 градусов по часовой стрелке
