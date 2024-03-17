@@ -26,23 +26,31 @@ namespace Cryptography.FileUtils {
         public void Create() {
             string? path = _dialogService.ShowSaveDialog();
             if (path != null) {
-                _path = path;
-
-                _fileService.CreateFile(_path);
-                _fileName.Text = Path.GetFileName(_path);
-                _butSave.Image = Image.FromFile(SavedSrc);
+                _fileService.CreateFile(path);
+                UpdatePath(path);
             }
         }
 
         public void Open() {
             string? path = _dialogService.ShowOpenDialog();
             if (path != null) {
-                _path = path;
-
-                _tbText.Text = _fileService.ReadFile(_path);
-                _fileName.Text = Path.GetFileName(_path);
-                _butSave.Image = Image.FromFile(SavedSrc);
+                _tbText.Text = _fileService.ReadFile(path);
+                UpdatePath(path);
             }
+        }
+
+        public void SaveAs() {
+            string? path = _dialogService.ShowOpenDialog();
+            if (path != null) {
+                _fileService.SaveFile(path, _tbText.Text);
+                UpdatePath(path);
+            }
+        }
+        
+        private void UpdatePath(string path) {
+            _path = path;
+            _fileName.Text = Path.GetFileName(_path);
+            _butSave.Image = Image.FromFile(SavedSrc);
         }
 
         public void Save() {
@@ -53,7 +61,7 @@ namespace Cryptography.FileUtils {
                 _butSave.Image = Image.FromFile(SavedSrc);
             }
         }
-
+        
         private void OfferToCreateOrOpenFile() {
             DialogResult dialogResult = FileDialogService.ShowWarningDialog(
                 @"Do you want to create a file?"

@@ -58,6 +58,8 @@
             this.cbLanguage = new System.Windows.Forms.ComboBox();
             this.lbSize = new System.Windows.Forms.Label();
             this.nudSize = new System.Windows.Forms.NumericUpDown();
+            this.butSaveAsInitText = new System.Windows.Forms.Button();
+            this.butSaveAsCiphertext = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKey)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSize)).BeginInit();
             this.SuspendLayout();
@@ -176,7 +178,7 @@
             // butOpenInitText
             // 
             this.butOpenInitText.Image = global::Cryptography.Properties.Resources.folder;
-            this.butOpenInitText.Location = new System.Drawing.Point(256, 17);
+            this.butOpenInitText.Location = new System.Drawing.Point(222, 17);
             this.butOpenInitText.Name = "butOpenInitText";
             this.butOpenInitText.Size = new System.Drawing.Size(25, 25);
             this.butOpenInitText.TabIndex = 17;
@@ -186,7 +188,7 @@
             // butSaveInitText
             // 
             this.butSaveInitText.Image = global::Cryptography.Properties.Resources.save;
-            this.butSaveInitText.Location = new System.Drawing.Point(287, 17);
+            this.butSaveInitText.Location = new System.Drawing.Point(253, 17);
             this.butSaveInitText.Name = "butSaveInitText";
             this.butSaveInitText.Size = new System.Drawing.Size(25, 25);
             this.butSaveInitText.TabIndex = 18;
@@ -196,7 +198,7 @@
             // butSaveCiphertext
             // 
             this.butSaveCiphertext.Image = global::Cryptography.Properties.Resources.save;
-            this.butSaveCiphertext.Location = new System.Drawing.Point(287, 161);
+            this.butSaveCiphertext.Location = new System.Drawing.Point(253, 161);
             this.butSaveCiphertext.Name = "butSaveCiphertext";
             this.butSaveCiphertext.Size = new System.Drawing.Size(25, 25);
             this.butSaveCiphertext.TabIndex = 20;
@@ -206,7 +208,7 @@
             // butOpenCiphertext
             // 
             this.butOpenCiphertext.Image = global::Cryptography.Properties.Resources.folder;
-            this.butOpenCiphertext.Location = new System.Drawing.Point(256, 161);
+            this.butOpenCiphertext.Location = new System.Drawing.Point(222, 161);
             this.butOpenCiphertext.Name = "butOpenCiphertext";
             this.butOpenCiphertext.Size = new System.Drawing.Size(25, 25);
             this.butOpenCiphertext.TabIndex = 19;
@@ -227,7 +229,7 @@
             // butNewInitText
             // 
             this.butNewInitText.Image = global::Cryptography.Properties.Resources._new;
-            this.butNewInitText.Location = new System.Drawing.Point(225, 17);
+            this.butNewInitText.Location = new System.Drawing.Point(191, 17);
             this.butNewInitText.Name = "butNewInitText";
             this.butNewInitText.Size = new System.Drawing.Size(25, 25);
             this.butNewInitText.TabIndex = 22;
@@ -237,7 +239,7 @@
             // butNewCiphertext
             // 
             this.butNewCiphertext.Image = global::Cryptography.Properties.Resources._new;
-            this.butNewCiphertext.Location = new System.Drawing.Point(225, 161);
+            this.butNewCiphertext.Location = new System.Drawing.Point(191, 161);
             this.butNewCiphertext.Name = "butNewCiphertext";
             this.butNewCiphertext.Size = new System.Drawing.Size(25, 25);
             this.butNewCiphertext.TabIndex = 23;
@@ -250,7 +252,7 @@
             this.tbInitTextFileName.Location = new System.Drawing.Point(83, 14);
             this.tbInitTextFileName.Name = "tbInitTextFileName";
             this.tbInitTextFileName.ReadOnly = true;
-            this.tbInitTextFileName.Size = new System.Drawing.Size(136, 22);
+            this.tbInitTextFileName.Size = new System.Drawing.Size(102, 22);
             this.tbInitTextFileName.TabIndex = 24;
             this.tbInitTextFileName.Tag = "Enryption";
             // 
@@ -260,7 +262,7 @@
             this.tbCiphertextFileName.Location = new System.Drawing.Point(83, 158);
             this.tbCiphertextFileName.Name = "tbCiphertextFileName";
             this.tbCiphertextFileName.ReadOnly = true;
-            this.tbCiphertextFileName.Size = new System.Drawing.Size(136, 22);
+            this.tbCiphertextFileName.Size = new System.Drawing.Size(102, 22);
             this.tbCiphertextFileName.TabIndex = 25;
             this.tbCiphertextFileName.Tag = "Decryption";
             // 
@@ -368,12 +370,34 @@
             this.nudSize.Visible = false;
             this.nudSize.ValueChanged += new System.EventHandler(this.nudSize_ValueChanged);
             // 
+            // butSaveAsInitText
+            // 
+            this.butSaveAsInitText.Image = ((System.Drawing.Image)(resources.GetObject("butSaveAsInitText.Image")));
+            this.butSaveAsInitText.Location = new System.Drawing.Point(284, 17);
+            this.butSaveAsInitText.Name = "butSaveAsInitText";
+            this.butSaveAsInitText.Size = new System.Drawing.Size(25, 25);
+            this.butSaveAsInitText.TabIndex = 34;
+            this.butSaveAsInitText.UseVisualStyleBackColor = true;
+            this.butSaveAsInitText.Click += new System.EventHandler(this.butSaveAsInitText_Click);
+            // 
+            // butSaveAsCiphertext
+            // 
+            this.butSaveAsCiphertext.Image = ((System.Drawing.Image)(resources.GetObject("butSaveAsCiphertext.Image")));
+            this.butSaveAsCiphertext.Location = new System.Drawing.Point(284, 161);
+            this.butSaveAsCiphertext.Name = "butSaveAsCiphertext";
+            this.butSaveAsCiphertext.Size = new System.Drawing.Size(25, 25);
+            this.butSaveAsCiphertext.TabIndex = 35;
+            this.butSaveAsCiphertext.UseVisualStyleBackColor = true;
+            this.butSaveAsCiphertext.Click += new System.EventHandler(this.butSaveAsCiphertext_Click);
+            // 
             // Encryptor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(672, 422);
+            this.Controls.Add(this.butSaveAsCiphertext);
+            this.Controls.Add(this.butSaveAsInitText);
             this.Controls.Add(this.nudSize);
             this.Controls.Add(this.lbSize);
             this.Controls.Add(this.cbLanguage);
@@ -414,6 +438,10 @@
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.Button butSaveAsCiphertext;
+
+        private System.Windows.Forms.Button butSaveAsInitText;
 
         private System.Windows.Forms.NumericUpDown nudSize;
 

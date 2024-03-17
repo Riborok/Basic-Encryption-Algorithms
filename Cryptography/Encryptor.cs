@@ -79,7 +79,23 @@ namespace Cryptography {
                 tbErrors.Text = exception.Message;
             }
         }
+        
+        private void butSaveAsInitText_Click(object sender, EventArgs e) {
+            try {
+                _textFileManager.SaveAs();
+            } catch (IOException exception) {
+                tbErrors.Text = exception.Message;
+            }
+        }
 
+        private void butSaveAsCiphertext_Click(object sender, EventArgs e) {
+            try {
+                _ciphertextFileManager.SaveAs();
+            } catch (IOException exception) {
+                tbErrors.Text = exception.Message;
+            }
+        }
+ 
         private void cbEncryptMethod_SelectedIndexChanged(object sender, EventArgs e) {
             cbLanguage.Enabled = true;
             cbLanguage.SelectedIndex = 0;
