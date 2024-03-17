@@ -22,7 +22,7 @@ namespace Cryptography.En_Decryption.Playfair
             return base.Encrypt(ExtraLetterManipulator.AddExtraLetterIfOddLength(plaintext), keywords);
         }
         
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when the length of the ciphertext is odd.</exception>
+        /// <exception cref="ArgumentException">Thrown when the length of the ciphertext is odd.</exception>
         public override string Decrypt(string ciphertext, IEnumerable<string> keywords) {
             if (ciphertext.Length.IsOdd())
                 throw new ArgumentException($"{nameof(PlayfairCipher)}: The ciphertext length '{ciphertext.Length}' must be even.");

@@ -85,7 +85,7 @@ namespace Cryptography.En_Decryption
         
         private bool IsDelimiter(char c) => c == _delimiter;
 
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when the index is out of range.</exception>
+        /// <exception cref="ArgumentException">Thrown when the index is out of range.</exception>
         public char GetLetter(int index)
         {
             if (IsIndexOutOfRange(index))
