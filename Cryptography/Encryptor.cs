@@ -207,11 +207,11 @@ namespace Cryptography {
         }
 
         private void tbInitText_TextChanged(object sender, EventArgs e) {
-            butSaveInitText.Image = Image.FromFile(@"../../Resources/notsaved.png");
+            butSaveInitText.Image = Image.FromFile(FileManager.NotSavedSrc);
         }
 
         private void tbCiphertext_TextChanged(object sender, EventArgs e) {
-            butSaveCiphertext.Image = Image.FromFile(@"../../Resources/notsaved.png");
+            butSaveCiphertext.Image = Image.FromFile(FileManager.NotSavedSrc);
         }
     }
 }

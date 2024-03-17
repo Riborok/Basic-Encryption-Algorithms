@@ -5,6 +5,9 @@ using System.Windows.Forms;
 
 namespace Cryptography.FileUtils {
     public class FileManager {
+        public const string SavedSrc = @"../../Resources/saved.png";
+        public const string NotSavedSrc = @"../../Resources/notsaved.png";
+        
         private string _path = string.Empty;
         private readonly Control _fileName;
         private readonly Control _tbText;
@@ -27,7 +30,7 @@ namespace Cryptography.FileUtils {
 
                 _fileService.CreateFile(_path);
                 _fileName.Text = Path.GetFileName(_path);
-                _butSave.Image = Image.FromFile(@"../../Resources/saved.png");
+                _butSave.Image = Image.FromFile(SavedSrc);
             }
         }
 
@@ -38,7 +41,7 @@ namespace Cryptography.FileUtils {
 
                 _tbText.Text = _fileService.ReadFile(_path);
                 _fileName.Text = Path.GetFileName(_path);
-                _butSave.Image = Image.FromFile(@"../../Resources/saved.png");
+                _butSave.Image = Image.FromFile(SavedSrc);
             }
         }
 
@@ -47,7 +50,7 @@ namespace Cryptography.FileUtils {
                 OfferToCreateOrOpenFile();
             if (_path != string.Empty) {
                 _fileService.SaveFile(_path, _tbText.Text);
-                _butSave.Image = Image.FromFile(@"../../Resources/saved.png");
+                _butSave.Image = Image.FromFile(SavedSrc);
             }
         }
 
