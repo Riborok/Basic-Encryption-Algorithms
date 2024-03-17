@@ -28,7 +28,6 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Encryptor));
             this.tbInitText = new System.Windows.Forms.TextBox();
             this.lbKey = new System.Windows.Forms.Label();
             this.butEncrypt = new System.Windows.Forms.Button();
@@ -68,6 +67,7 @@
             this.tbInitText.Location = new System.Drawing.Point(12, 45);
             this.tbInitText.Multiline = true;
             this.tbInitText.Name = "tbInitText";
+            this.tbInitText.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.tbInitText.Size = new System.Drawing.Size(300, 105);
             this.tbInitText.TabIndex = 1;
             this.tbInitText.TextChanged += new System.EventHandler(this.tbInitText_TextChanged);
@@ -169,6 +169,7 @@
             this.tbCiphertext.Location = new System.Drawing.Point(12, 189);
             this.tbCiphertext.Multiline = true;
             this.tbCiphertext.Name = "tbCiphertext";
+            this.tbCiphertext.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.tbCiphertext.Size = new System.Drawing.Size(300, 105);
             this.tbCiphertext.TabIndex = 16;
             this.tbCiphertext.TextChanged += new System.EventHandler(this.tbCiphertext_TextChanged);
@@ -403,7 +404,6 @@
             this.Controls.Add(this.lbKey);
             this.Controls.Add(this.tbInitText);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(15, 15);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;

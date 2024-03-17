@@ -61,8 +61,8 @@ namespace Cryptography.En_Decryption.Decimation {
             if (!IsKeyCorrect(stringKey, out int key, out string message)) {
                 throw new ArgumentException(message);    
             }
-            
-            int inverseKey = _inverseKeysGenerator.GenerateInverseKey(key);
+
+            int inverseKey = _inverseKeysGenerator.GenerateInverseKey(key, TextAlphabet.Size);
             
             var text = new StringBuilder(ciphertext.Length);
             foreach (var letter in ciphertext)

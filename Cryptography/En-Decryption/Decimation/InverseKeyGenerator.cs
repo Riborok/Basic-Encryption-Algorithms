@@ -9,32 +9,33 @@ namespace Cryptography.En_Decryption.Decimation {
         }
         
         /// <exception cref="ArgumentException">Thrown when the key is not reversible (when the key and the symbols amount are not mutually prime).</exception>
-        public int GenerateInverseKey(int key) {
-            int t = 0;
-            int newT = 1;
-            int r = _symbolsAmount;
-            int newR = key;
+        public int GenerateInverseKey(int key, int modulus) {
+            key = (key % modulus + modulus) % modulus; // Приводим число к положительному представлению
 
-            while (newR != 0)
+            int m0 = modulus;
+            int x0 = 0;
+            int x1 = 1;
+
+            if (modulus == 1)
+                return 0;
+
+            while (key > 1)
             {
-                int quotient = r / newR;
-                
-                int temp = t;
-                t = newT;
-                newT = temp - quotient * newT;
-                
-                temp = r;
-                r = newR;
-                newR = temp - quotient * newR;
+                int q = key / modulus;
+
+                int temp = modulus;
+                modulus = key % modulus;
+                key = temp;
+
+                temp = x0;
+                x0 = x1 - q * x0;
+                x1 = temp;
             }
 
-            if (r > 1)
-                throw new ArgumentException($"{nameof(InverseKeysGenerator)}: The key '{key}' isn't reversible!");
+            if (x1 < 0)
+                x1 += m0;
 
-            if (t < 0)
-                t += _symbolsAmount;
-
-            return t;    
+            return x1;   
         }
     }
 }

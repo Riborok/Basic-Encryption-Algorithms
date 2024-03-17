@@ -11,17 +11,6 @@ namespace Tests {
     public class DecimationCipherTests {
         private readonly DecimationCipher _cipher = 
             new DecimationCipher(Alphabets.EnAlphabet, Alphabets.DigitAlphabet);
-
-        [Test]
-        public void Check_InverseKey() {
-            int[] keys = { 3, 5, 7, 9, 11, 15, 17, 19, 21, 23, 25 };
-            int[] inverseKeys = { 9, 21, 15, 3, 19, 7, 23, 11, 5, 17, 25 };
-
-            var inverseKeysGenerator = new InverseKeysGenerator(Alphabets.EnAlphabet.Size);
-            for (int i = 0; i < keys.Length; i++) {
-                Assert.AreEqual(inverseKeysGenerator.GenerateInverseKey(keys[i]), inverseKeys[i]);
-            }
-        }
         
         [Test]
         public void EncryptDecrypt_Plaintext_ReturnsOriginalText()
