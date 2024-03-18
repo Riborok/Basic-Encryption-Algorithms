@@ -40,7 +40,7 @@ namespace Cryptography.FileUtils {
         }
 
         public void SaveAs() {
-            string? path = _dialogService.ShowOpenDialog();
+            string? path = _dialogService.ShowSaveDialog();
             if (path != null) {
                 _fileService.SaveFile(path, _tbText.Text);
                 UpdatePath(path);
