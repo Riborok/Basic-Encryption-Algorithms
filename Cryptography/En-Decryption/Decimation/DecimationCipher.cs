@@ -29,8 +29,8 @@ namespace Cryptography.En_Decryption.Decimation {
                 message = $"{nameof(DecimationCipher)}: The key '{stringKey}' is not a number!";
             else if (!AreRelPrime(key, TextAlphabet.Size))
                 message = $"{nameof(DecimationCipher)}: The key '{stringKey}' is not mutually simple with the amount of characters in the alphabet, which is {TextAlphabet.Size}!";
-            else if (key > TextAlphabet.Size || key < -TextAlphabet.Size)
-                message = $"{nameof(DecimationCipher)}: The key '{stringKey}' is larger than the amount of characters in the alphabet, which is {TextAlphabet.Size}!";
+            // else if (key > TextAlphabet.Size || key < -TextAlphabet.Size)
+            //     message = $"{nameof(DecimationCipher)}: The key '{stringKey}' is larger than the amount of characters in the alphabet, which is {TextAlphabet.Size}!";
             // else if (key <= 0)
             //     message = $"{nameof(DecimationCipher)}: The key '{stringKey}' cannot be less than or equal to zero!";
             

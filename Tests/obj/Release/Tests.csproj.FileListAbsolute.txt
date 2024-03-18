@@ -16,3 +16,21 @@ C:\Users\user\Desktop\TI\lab1\Cryptography\Tests\obj\Release\Tests.csproj.CoreCo
 C:\Users\user\Desktop\TI\lab1\Cryptography\Tests\obj\Release\Tests.csproj.CopyComplete
 C:\Users\user\Desktop\TI\lab1\Cryptography\Tests\obj\Release\Tests.dll
 C:\Users\user\Desktop\TI\lab1\Cryptography\Tests\obj\Release\Tests.pdb
+C:\Users\Archichil\Desktop\3 сем\ООТПиСП\Basic-Encryption-Algorithms\Tests\bin\Release\NUnit3.TestAdapter.dll
+C:\Users\Archichil\Desktop\3 сем\ООТПиСП\Basic-Encryption-Algorithms\Tests\bin\Release\NUnit3.TestAdapter.pdb
+C:\Users\Archichil\Desktop\3 сем\ООТПиСП\Basic-Encryption-Algorithms\Tests\bin\Release\nunit.engine.dll
+C:\Users\Archichil\Desktop\3 сем\ООТПиСП\Basic-Encryption-Algorithms\Tests\bin\Release\nunit.engine.api.dll
+C:\Users\Archichil\Desktop\3 сем\ООТПиСП\Basic-Encryption-Algorithms\Tests\bin\Release\nunit.engine.core.dll
+C:\Users\Archichil\Desktop\3 сем\ООТПиСП\Basic-Encryption-Algorithms\Tests\bin\Release\testcentric.engine.metadata.dll
+C:\Users\Archichil\Desktop\3 сем\ООТПиСП\Basic-Encryption-Algorithms\Tests\bin\Release\Tests.dll
+C:\Users\Archichil\Desktop\3 сем\ООТПиСП\Basic-Encryption-Algorithms\Tests\bin\Release\Tests.pdb
+C:\Users\Archichil\Desktop\3 сем\ООТПиСП\Basic-Encryption-Algorithms\Tests\bin\Release\Cryptography.exe
+C:\Users\Archichil\Desktop\3 сем\ООТПиСП\Basic-Encryption-Algorithms\Tests\bin\Release\nunit.framework.dll
+C:\Users\Archichil\Desktop\3 сем\ООТПиСП\Basic-Encryption-Algorithms\Tests\bin\Release\Cryptography.pdb
+C:\Users\Archichil\Desktop\3 сем\ООТПиСП\Basic-Encryption-Algorithms\Tests\bin\Release\Cryptography.exe.config
+C:\Users\Archichil\Desktop\3 сем\ООТПиСП\Basic-Encryption-Algorithms\Tests\bin\Release\nunit.framework.xml
+C:\Users\Archichil\Desktop\3 сем\ООТПиСП\Basic-Encryption-Algorithms\Tests\obj\Release\Tests.csproj.AssemblyReference.cache
+C:\Users\Archichil\Desktop\3 сем\ООТПиСП\Basic-Encryption-Algorithms\Tests\obj\Release\Tests.csproj.CoreCompileInputs.cache
+C:\Users\Archichil\Desktop\3 сем\ООТПиСП\Basic-Encryption-Algorithms\Tests\obj\Release\Tests.csproj.Up2Date
+C:\Users\Archichil\Desktop\3 сем\ООТПиСП\Basic-Encryption-Algorithms\Tests\obj\Release\Tests.dll
+C:\Users\Archichil\Desktop\3 сем\ООТПиСП\Basic-Encryption-Algorithms\Tests\obj\Release\Tests.pdb

@@ -19,3 +19,13 @@ D:\Уник\ТИ\Задание №1_простейшие_шифры\Basic-Encry
 D:\Уник\ТИ\Задание №1_простейшие_шифры\Basic-Encryption-Algorithms\Cryptography\obj\Release\Cryptography.csproj.CoreCompileInputs.cache
 D:\Уник\ТИ\Задание №1_простейшие_шифры\Basic-Encryption-Algorithms\Cryptography\obj\Release\Cryptography.exe
 D:\Уник\ТИ\Задание №1_простейшие_шифры\Basic-Encryption-Algorithms\Cryptography\obj\Release\Cryptography.pdb
+C:\Users\Archichil\Desktop\3 сем\ООТПиСП\Basic-Encryption-Algorithms\Cryptography\bin\Release\Cryptography.exe.config
+C:\Users\Archichil\Desktop\3 сем\ООТПиСП\Basic-Encryption-Algorithms\Cryptography\bin\Release\Cryptography.exe
+C:\Users\Archichil\Desktop\3 сем\ООТПиСП\Basic-Encryption-Algorithms\Cryptography\bin\Release\Cryptography.pdb
+C:\Users\Archichil\Desktop\3 сем\ООТПиСП\Basic-Encryption-Algorithms\Cryptography\obj\Release\Cryptography.csproj.AssemblyReference.cache
+C:\Users\Archichil\Desktop\3 сем\ООТПиСП\Basic-Encryption-Algorithms\Cryptography\obj\Release\Cryptography.Encryptor.resources
+C:\Users\Archichil\Desktop\3 сем\ООТПиСП\Basic-Encryption-Algorithms\Cryptography\obj\Release\Cryptography.Properties.Resources.resources
+C:\Users\Archichil\Desktop\3 сем\ООТПиСП\Basic-Encryption-Algorithms\Cryptography\obj\Release\Cryptography.csproj.GenerateResource.cache
+C:\Users\Archichil\Desktop\3 сем\ООТПиСП\Basic-Encryption-Algorithms\Cryptography\obj\Release\Cryptography.csproj.CoreCompileInputs.cache
+C:\Users\Archichil\Desktop\3 сем\ООТПиСП\Basic-Encryption-Algorithms\Cryptography\obj\Release\Cryptography.exe
+C:\Users\Archichil\Desktop\3 сем\ООТПиСП\Basic-Encryption-Algorithms\Cryptography\obj\Release\Cryptography.pdb
