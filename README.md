@@ -15,4 +15,4 @@ ___
 
 ## License
 ___
-This game is released under the MIT License. For more information, check the LICENSE file.
+This program is released under the MIT License. For more information, check the LICENSE file.
