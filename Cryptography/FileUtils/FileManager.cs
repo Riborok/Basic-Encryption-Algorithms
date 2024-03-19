@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -63,13 +62,14 @@ namespace Cryptography.FileUtils {
         }
         
         private void OfferToCreateOrOpenFile() {
-            DialogResult dialogResult = FileDialogService.ShowWarningDialog(
-                @"Do you want to create a file?"
-            );
-            if (dialogResult == DialogResult.Yes)
-                Create();
+            DialogResult dialogResult = FileDialogService.ShowWarningDialog(@"Do you want to save an to existing file?");
+            if (dialogResult == DialogResult.Yes) {
+                string? path = _dialogService.ShowOpenDialog();
+                if (path != null)
+                    UpdatePath(path);
+            }
             else if (dialogResult == DialogResult.No)
-                Open();
+                Create();
         }
     }
 }
