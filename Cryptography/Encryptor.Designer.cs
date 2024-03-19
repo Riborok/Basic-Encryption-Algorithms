@@ -73,7 +73,6 @@
             this.tbInitText.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.tbInitText.Size = new System.Drawing.Size(300, 105);
             this.tbInitText.TabIndex = 1;
-            this.tbInitText.TextChanged += new System.EventHandler(this.tbInitText_TextChanged);
             // 
             // lbKey
             // 
@@ -175,7 +174,6 @@
             this.tbCiphertext.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.tbCiphertext.Size = new System.Drawing.Size(300, 105);
             this.tbCiphertext.TabIndex = 16;
-            this.tbCiphertext.TextChanged += new System.EventHandler(this.tbCiphertext_TextChanged);
             // 
             // butOpenInitText
             // 

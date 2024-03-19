@@ -21,13 +21,12 @@ namespace Cryptography {
             InitializeComponent();
             cbLanguage.SelectedIndex = 0;
             cbEncryptMethod.SelectedIndex = 0;
-            
             StartPosition = FormStartPosition.CenterScreen;
 
             const string filter = @"Text files (*.txt)|*.txt";
             var fileService = new TextFileService();
-            _textFileManager = new FileManager(tbInitTextFileName, tbInitText, butSaveInitText, fileService, filter);
-            _ciphertextFileManager = new FileManager(tbCiphertextFileName, tbCiphertext, butSaveCiphertext, fileService, filter);
+            _textFileManager = new FileManager(tbInitTextFileName, tbInitText, fileService, filter);
+            _ciphertextFileManager = new FileManager(tbCiphertextFileName, tbCiphertext, fileService, filter);
             
             dgvKey.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 0, 0, 0);
         }
@@ -220,14 +219,6 @@ namespace Cryptography {
             {
                 column.Width = dgvKey.RowTemplate.Height;
             }
-        }
-
-        private void tbInitText_TextChanged(object sender, EventArgs e) {
-            butSaveInitText.Image = Image.FromFile(FileManager.NotSavedSrc);
-        }
-
-        private void tbCiphertext_TextChanged(object sender, EventArgs e) {
-            butSaveCiphertext.Image = Image.FromFile(FileManager.NotSavedSrc);
         }
     }
 }
